@@ -51,16 +51,6 @@ downloading resources.  This ensures that I help foster an environment of learni
 by both learning from others and teaching.
 
 
-Team Roles:
-
-All teammates will be working around the full stack, however, we will all have our own specializations.
-
-Kartikeya Shukla - UX/UI Engineering
-Ryan Kittleson - Frontend Engineering
-Vighnesh Iyer - Backend Engineering
-Joseph Reimer - Frontend Engineering
-Brian Doyle - Data Engineering
-
 Conflict Resolution:
 
 In the event of a conflict, the conflicting teammates will have another teammate flip a coin.  If there is not another teammate present, we will contact someone to flip it via skype, snapchat or something similar.
