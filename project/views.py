@@ -9,4 +9,4 @@ from django.urls import reverse
 
 def index(request):
     courses = course.objects.all()
-    return render(request, 'project/index.html', courses)
+    return render(request, 'project/index.html', {courses: courses})
