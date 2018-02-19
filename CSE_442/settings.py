@@ -112,6 +112,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'project.apps.ProjectConfig',
 ]
 
 MIDDLEWARE = [
@@ -124,7 +125,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'cse442.urls'
+ROOT_URLCONF = 'CSE_442.urls'
 
 TEMPLATES = [
     {
@@ -142,7 +143,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'cse442.wsgi.application'
+WSGI_APPLICATION = 'CSE_442.wsgi.application'
 
 
 # Database
