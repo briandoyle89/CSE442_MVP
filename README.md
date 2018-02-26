@@ -3,11 +3,11 @@ CSE 442 Team Information:
 Team Name: bits_please
 
 Members:
-Kartikeya Shukla (kartikey@buffalo.edu, 50119551)
-Ryan Kittleson (ryankitt@buffalo.edu, 50114193)
-Vighnesh Iyer (viyer5@buffalo.edu, 50113099)
-Joseph Reimer (jwreimer@buffalo.edu, 50119370)
-Brian Doyle ( bpdoyle2@buffalo.edu, 30589048)
+Kartikeya Shukla 
+Ryan Kittleson 
+Vighnesh Iyer
+Joseph Reimer 
+Brian Doyle 
 
 
 Project Description for MVP:
