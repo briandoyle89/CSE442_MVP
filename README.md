@@ -22,8 +22,10 @@ Submissions tied to account
 Search options
 
 Technical Description:-
-We’ll be building the project in python, and using flask framework to integrate the front-end & back-end. For front-end we’ll be using Bootstrap & Pure. We have yet to decide what we’ll be using for our database, although most probably it’s going to be in MongoDB.
+We’ll be building the project in python, and using Django framework to integrate the front-end & back-end. For front-end we’ll be using Bootstrap. We have yet to decide what we’ll be using for our database, although most probably it’s going to be in PostgreSQL.
 
+Currently Viewing Our Progress:-
+As we will be developing a webapp, the first stages involved creating placeholder html files that we will be working on and adding to before we can fully incorporate it. Therefor, to check our current progress, the html files must be opened in browser for viewing at this moment.
 
 Additional Features:-
 We might add these later on during the semester:-
@@ -55,14 +57,7 @@ Conflict Resolution:
 
 In the event of a conflict, the conflicting teammates will have another teammate flip a coin.  If there is not another teammate present, we will contact someone to flip it via skype, snapchat or something similar.
 
-Signed
-
-Kartikeya Shukla  __________________
-Ryan Kittleson __________________
-Vighnesh Iyer __________________
-Joseph Reimer __________________
-Brian Doyle __________________
-
+S
 <<<<<<< gitter-badge
 
 
