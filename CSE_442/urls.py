@@ -21,7 +21,8 @@ from project import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', views.index, name='index')
+    url(r'^$', views.index, name='index'),
+    url(r'^(?P<identity>[0-9a-zA-Z]+)/course_view$', views.course_view, name='course_view')
 ]
 
 if settings.DEBUG:
