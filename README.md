@@ -66,3 +66,5 @@ S
 >>>>>>> master
 
 The link to our prototype on YouTube is: https://youtu.be/SKBC7Gm7-KI
+
+To run over prototype: Please open DashboardWithPlaceHolderImage.htm file in any browser
