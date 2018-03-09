@@ -22,11 +22,18 @@ class user(models.Model):
     def __str__(self):
         return self.user_name
 
+    # class Meta:
+    #     db_table = user
+
+
 class course(models.Model):
     course_name = models.CharField(blank=True, max_length=40)
 
     def __str__(self):
         return self.course_name
+
+    # class Meta:
+    #     db_table = course
 
 class file(models.Model):
     file_name = models.CharField(blank=True, max_length=60)
@@ -34,3 +41,6 @@ class file(models.Model):
     user = models.ForeignKey(user, on_delete=CASCADE, null=True, blank=True)
     course = models.ForeignKey(course, on_delete=CASCADE, null=True, blank=True)
     file_link = models.FileField()
+
+    # class Meta:
+    #     db_table = file
