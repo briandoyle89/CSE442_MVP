@@ -15,12 +15,16 @@ class user(models.Model):
         max_length=255,
         unique=True,
     )
-    reset_code = models.IntegerField(default=100000)
+    password = models.CharField(max_length=10)
     submissions = models.IntegerField(default=0)
     downloads = models.IntegerField(default=0)
 
     def __str__(self):
         return self.user_name
+
+    # class Meta:
+    #     db_table = user
+
 
 class course(models.Model):
     course_name = models.CharField(blank=True, max_length=40)
@@ -28,9 +32,15 @@ class course(models.Model):
     def __str__(self):
         return self.course_name
 
+    # class Meta:
+    #     db_table = course
+
 class file(models.Model):
     file_name = models.CharField(blank=True, max_length=60)
     upload_date = models.DateField(auto_now=True, editable=False)
     user = models.ForeignKey(user, on_delete=CASCADE, null=True, blank=True)
     course = models.ForeignKey(course, on_delete=CASCADE, null=True, blank=True)
     file_link = models.FileField()
+
+    # class Meta:
+    #     db_table = file
