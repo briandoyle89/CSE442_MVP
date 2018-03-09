@@ -16,9 +16,9 @@ def login(request):
         username = request.POST.get("username")
         password = request.POST.get("password")
         for users in user.objects.all():
-            if username == users.user_name:
-                print(username)
-                return redirect(login)
+            if username == users.user_name and password == users.password:
+                return render(request, 'project/index.html', {'error_message': "You're Logged In."})
+        return render(request, 'project/index.html', {'error_message': "Incorrect Username or Password."})
     return render(request, 'project/index.html')
 
 def register(request):
@@ -33,6 +33,10 @@ def check_register(request):
         user.objects.create(user_name=username,
                             password=password,
                             email=email)
+        for users in user.objects.all():
+            print(users.user_name)
+            print(users.password)
+            print(users.email)
         return redirect(login)
 
 

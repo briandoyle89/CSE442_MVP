@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'project/css/login.css' %}">
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
 
     {% block content %}
-
+    <div id="login">
         <form id="login-form" method="POST" action="{% url 'check_register' %}">
             <div>
               <input name="email" id="email" type="email" class="validate white-text" required>
@@ -24,6 +26,7 @@
             {% csrf_token %}
             <button type="submit">Submit</button>
         </form>
+    </div>
 
     {% endblock %}
 
