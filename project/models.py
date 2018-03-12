@@ -40,7 +40,7 @@ class file(models.Model):
     upload_date = models.DateField(auto_now=True, editable=False)
     user = models.ForeignKey(user, on_delete=CASCADE, null=True, blank=True)
     course = models.ForeignKey(course, on_delete=CASCADE, null=True, blank=True)
-    file_link = models.FileField()
+    file_link = models.FileField(upload_to='documents/')
 
     # class Meta:
     #     db_table = file

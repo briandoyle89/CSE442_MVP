@@ -27,7 +27,9 @@ urlpatterns = [
     url(r'^register$', views.register, name='register'),
     url(r'^check_register', views.check_register, name='check_register'),
     url(r'^course_list$', views.course_list, name='course_list'),
-    url(r'^(?P<identity>[0-9a-zA-Z]+)/course_view$', views.course_view, name='course_view')
+    url(r'^file_upload$', views.file_upload, name='file_upload'),
+    url(r'^download/(?P<file>.*)$', views.download, name='download'),
+    url(r'^(?P<identity>[0-9a-zA-Z]+)/course_view/$', views.course_view, name='course_view'),
 ]
 
 if settings.DEBUG:

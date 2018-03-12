@@ -58,13 +58,3 @@ Conflict Resolution:
 In the event of a conflict, the conflicting teammates will have another teammate flip a coin.  If there is not another teammate present, we will contact someone to flip it via skype, snapchat or something similar.
 
 S
-<<<<<<< gitter-badge
-
-
-[![Join the chat at https://gitter.im/CSE442_MVP_OFFICIAL/Lobby](https://badges.gitter.im/CSE442_MVP_OFFICIAL/Lobby.svg)](https://gitter.im/CSE442_MVP_OFFICIAL/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
->>>>>>> master
-
-The link to our prototype on YouTube is: https://youtu.be/SKBC7Gm7-KI
-
-To run over prototype: Please open DashboardWithPlaceHolderImage.htm file in any browser
