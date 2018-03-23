@@ -23,12 +23,13 @@ from project import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.index, name='index'),
-    url(r'^login$', views.login, name='login'),
+    url(r'^login_user$', views.login_user, name='login_user'),
+    url(r'^logout_view$', views.logout_view, name='logout_view'),
     url(r'^register$', views.register, name='register'),
     url(r'^check_register', views.check_register, name='check_register'),
     url(r'^course_list$', views.course_list, name='course_list'),
     url(r'^file_upload$', views.file_upload, name='file_upload'),
-    url(r'^download/(?P<file>.*)$', views.download, name='download'),
+    url(r'^download/(?P<file_chosen>.*)$', views.download, name='download'),
     url(r'^(?P<identity>[0-9a-zA-Z]+)/course_view/$', views.course_view, name='course_view'),
 ]
 
