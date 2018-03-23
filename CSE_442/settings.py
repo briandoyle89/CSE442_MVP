@@ -77,6 +77,7 @@ PASSWORD_HASHERS = [
 ]
 
 WSGI_APPLICATION = 'CSE_442.wsgi.application'
+AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend',)
 
 
 # Database
@@ -123,6 +124,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+LOGIN_URL='login_user'
+LOGIN_REDIRECT_URL='login_user'
+
+# AUTH_PROFILE_MODULE = "project.UserProfile"
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/

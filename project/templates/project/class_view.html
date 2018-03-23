@@ -79,7 +79,7 @@
                 <div id="course_box" style="display: inline">
                   {% for file in files %}
                       <div id="course_div" style="height:100px; width: 300px; margin: 10px">
-                          <form action="{% url 'download' file=file.file_link %}">
+                          <form action="{% url 'download' file_chosen=file.file_link %}">
                             <p>{{ file.file_name }}</p>
                               <button>
                                   Download this File

@@ -42,8 +42,8 @@
 
                       <ul class="nav nav-pills nav-stacked">
                           <li class="active"><a href="#">Home</a></li>
-                          <li><a href="#">My Downloads</a></li>
-                          <li><a href="#">My Uploads</a></li>
+                          <li><a href="{% url 'my_downloads' %}">My Downloads</a></li>
+                          <li><a href="{% url 'my_uploads' %}">My Uploads</a></li>
                           <li><a href="{% url 'file_upload' %}">Upload a DOCUMENT</a></li>
                       </ul>
 

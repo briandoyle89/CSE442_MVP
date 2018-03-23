@@ -27,6 +27,7 @@
 		    <ul class="nav navbar-nav navbar-right">
 		      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
 		      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+		      <li><a href="{% url 'logout_view' %}"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
 		    </ul>
 		  </div>
 		</nav>
@@ -44,7 +45,7 @@
 		      <ul class="nav nav-pills nav-stacked">
 				  <li class="active"><a href="#">Home</a></li>
 				  <li><a href="#">My Downloads</a></li>
-				  <li><a href="#">My Uploads</a></li>
+				  <li><a href="{% url 'my_uploads' %}">My Uploads</a></li>
 				  <li><a href="{% url 'file_upload' %}">Upload a DOCUMENT</a></li>
 			  </ul>
 
@@ -91,6 +92,9 @@
                       </div>
                   {% endfor %}
               </div>
+{#            <div>#}
+{#                <p>{{ request.user }}</p>#}
+{#            </div>#}
 
 
 
