@@ -16,24 +16,25 @@ class UserManager(BaseUserManager):
         birth and password.
         """
 
+
         user.set_password(password)
         user.save(using=self._db)
         return user
 
 class user(User, PermissionsMixin):
-    submissions = models.IntegerField(default=0)
-    downloads = models.IntegerField(default=0)
+    submissions = models.IntegerField(default=0, null=True,)
+    downloads = models.IntegerField(default=0, null=True,)
     objects = UserManager()
 
 class course(models.Model):
-    course_name = models.CharField(blank=True, max_length=40)
-#upload_model for users to upload files
+    course_name = models.CharField(blank=True, null=True, max_length=40)
+
 class file(models.Model):
     file_name = models.CharField(blank=True, max_length=60)
     username = models.ForeignKey(User, on_delete=CASCADE, null=True, blank=True)
     course = models.ForeignKey(course, on_delete=CASCADE, null=True, blank=True)
     file_link = models.FileField(upload_to='documents/')
-#download_model for users to download file
+
 class downloaded_file(models.Model):
     file_downloaded = models.ForeignKey(file, on_delete=CASCADE, null=True, blank=True)
     username = models.ForeignKey(User, on_delete=CASCADE, null=True, blank=True)
