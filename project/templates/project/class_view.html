@@ -20,8 +20,7 @@
 		    </div>
 		    <ul class="nav navbar-nav">
 		      <li class="active"><a href="#">Dashboard</a></li>
-		     <li><a href="#">About Us</a></li>
-		      <li><a href="#">Contact</a></li>
+		     <li><a href=" {% url 'aboutus' %} ">About Us</a></li>
 		    </ul>
 		    <ul class="nav navbar-nav navbar-right">
 		      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
@@ -41,16 +40,16 @@
 		      <a id="sidebar-edit-profile-btn" href="#/profile" class="ajax_navigation" data-ch-track-tab-change="" data-name="User Profile" style="padding-left: 70px;">Edit Profile</a><br><br>
 
 		      <ul class="nav nav-pills nav-stacked">
-				  <li class="active"><a href="#">Home</a></li>
-				  <li><a href="#">My Downloads</a></li>
-				  <li><a href="#">My Uploads</a></li>
+				  <li class="active"><a href="{% url 'course_list' %}">Home</a></li>
+				  <li><a href="{% url 'my_downloads' %}">My Downloads</a></li>
+				  <li><a href="{% url 'my_uploads' %}">My Uploads</a></li>
 				  <li><a href="{% url 'file_upload' %}">Upload a DOCUMENT</a></li>
 			  </ul>
 
 		    </div>
 		    <div class="col-sm-10">
 		     <center><h1> Welcome to {{ course_name }}</h1> </center>
-		      <div class="btn-group btn-group-justified">
+		   <!--   <div class="btn-group btn-group-justified">
 					 <div class="btn-group">
 					    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
 					    Select Your Subject <span class="caret"></span></button>
@@ -75,7 +74,7 @@
 						<a href="#" class="btn btn-primary">SEARCH</a>
 					</div>
 				    
-			  </div>
+			  </div> -->
                 <div id="course_box" style="display: inline">
                   {% for file in files %}
                       <div id="course_div" style="height:100px; width: 300px; margin: 10px">

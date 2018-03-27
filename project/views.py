@@ -107,6 +107,39 @@ def download(request, file_chosen):
             return response
     raise Http404
 
+@login_required
+def my_uploads(request):
+    this_user = request.user
+    files = file.objects.all()
+    file_list = []
+    print(this_user)
+    for file_object in files:
+        if file_object.username == this_user:
+            print(file_object.username)
+            print(file_object)
+            file_list.append(file_object)
+
+    return render(request, 'project/myuploads.html', {'file_list': file_list})
+
+
+
+@login_required
+def my_downloads(request):
+    this_user = request.user
+    downloaded_files = downloaded_file.objects.all()
+    file_list = []
+    for dl_file in downloaded_files:
+        if dl_file.username == this_user:
+            this_file = dl_file.file_downloaded
+            file_list.append(this_file)
+
+    return render(request, 'project/mydownloads.html', {'file_list': file_list})
+
 def logout_view(request):
     logout(request)
     return redirect(index)
+
+def aboutus(request):
+    return render(request, 'project/aboutUS.html')
+
+
