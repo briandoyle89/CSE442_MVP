@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '_a4)=d+8v#@cz@znx)%p7hxcjl5vp&jbkmhd_n!ku8mb#@oe4$'
+SECRET_KEY = '@it2(r^2#zc!f#g5u=7z!0&ulqwyufhy5ntpl#!d3ruiy5-0x2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -68,7 +68,16 @@ TEMPLATES = [
     },
 ]
 
+PASSWORD_HASHERS = [
+    'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
+    'django.contrib.auth.hashers.BCryptPasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+    'django.contrib.auth.hashers.Argon2PasswordHasher',
+]
+
 WSGI_APPLICATION = 'CSE_442.wsgi.application'
+AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend',)
 
 
 # Database
@@ -76,10 +85,25 @@ WSGI_APPLICATION = 'CSE_442.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'cse442project',
+        'USER': 'cse442',
+        'PASSWORD': 'cse442',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
+
+
+# Password validation
+# https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
+
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/1.11/howto/static-files/
+
+STATIC_URL = '/static/'
+
 
 
 # Password validation
@@ -100,6 +124,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+LOGIN_URL='login_user'
+LOGIN_REDIRECT_URL='login_user'
+
+# AUTH_PROFILE_MODULE = "project.UserProfile"
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
@@ -118,6 +146,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 
 TEMPLATE_DIRS = (os.path.join(BASE_DIR,  'templates'),)
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'

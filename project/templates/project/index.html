@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+
+<html lang="en">
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'project/css/login.css' %}">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% block content %}
+
+    <div id="container">
+        <div id="login">
+            <form id="login-form" method="POST" action="{% url 'login_user' %}">
+                <div>
+                  <input name="username" id="username" class="validate white-text" required>
+                  <label for="email-input" class="white-text">Username</label>
+                </div>
+                <div>
+                  <input name="password" id="password-input" type="password" class="validate white-text" required>
+                  <label for="password-input" class="white-text">Password</label>
+                </div>
+                {% csrf_token %}
+                <button type="submit">Submit</button>
+            </form>
+            <form action="{% url 'register' %}">
+                <button type="submit">Don't Have an Account? Click Here.</button>
+            </form>
+        </div>
+        {{ error_message }}
+
+    </div>
+
+{% endblock %}
+
+
+</body>
+</html>
