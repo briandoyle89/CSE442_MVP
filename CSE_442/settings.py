@@ -23,7 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '@it2(r^2#zc!f#g5u=7z!0&ulqwyufhy5ntpl#!d3ruiy5-0x2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = True]
+
+SECURE_SSL_REDIRECT = True
 
 ALLOWED_HOSTS = []
 
@@ -68,7 +70,13 @@ TEMPLATES = [
     },
 ]
 
-
+# PASSWORD_HASHERS = [
+#     'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
+#     'django.contrib.auth.hashers.BCryptPasswordHasher',
+#     'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+#     'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+#     'django.contrib.auth.hashers.Argon2PasswordHasher',
+# ]
 WSGI_APPLICATION = 'CSE_442.wsgi.application'
 AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend',)
 
