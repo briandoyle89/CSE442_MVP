@@ -16,11 +16,11 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 
 
-
-
+#Views render html pages located in the tempelates directory.
+#Main Page
 def index(request):
     return render(request, 'project/index.html')
-
+#Login
 def login_user(request):
     if request.method == "POST":
         username = request.POST.get("username")
@@ -37,11 +37,11 @@ def login_user(request):
         else:
             return render(request, 'project/index.html', {'error_message': "Please Log In."})
     return render(request, 'project/index.html')
-
+#Registration
 def register(request):
     return render(request, 'project/register.html')
 
-
+#Check valid user/registration.
 def check_register(request):
     if request.method == "POST":
         username = request.POST.get("username")
@@ -54,7 +54,7 @@ def check_register(request):
         user.backend = 'django.contrib.auth.backends.ModelBackend'
         return redirect(index)
 
-
+#View list of courses after login.
 @login_required
 def course_list(request):
 
@@ -63,7 +63,7 @@ def course_list(request):
     for course_ in courses: print(course_)
     user = request.user
     return render(request, 'project/dashboard.html', {'courses': courses})
-
+#View courses for which 'this' user downloaded/uploaded files.
 @login_required
 def course_view(request, identity):
 
@@ -73,6 +73,7 @@ def course_view(request, identity):
         user = request.user
         return render(request, 'project/class_view.html', {'files': files,
                                                            'course_name': course_name})
+#Rest are self-explanotary
 @login_required
 def file_upload(request):
     this_user = request.user

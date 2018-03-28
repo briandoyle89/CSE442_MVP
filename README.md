@@ -64,6 +64,12 @@ S
 [![Join the chat at https://gitter.im/CSE442_MVP_OFFICIAL/Lobby](https://badges.gitter.im/CSE442_MVP_OFFICIAL/Lobby.svg)](https://gitter.im/CSE442_MVP_OFFICIAL/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 
+The link to our website is: https://ubliberator3.pythonanywhere.com/
+
+The link to our Aplha release video is: https://youtu.be/pqN3ANPt9Qo
+
+====================================================================================================
+
 The link to our prototype on YouTube is: https://youtu.be/SKBC7Gm7-KI
 
 

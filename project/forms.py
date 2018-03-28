@@ -1,6 +1,6 @@
 from django import forms
 from .models import file, User
-
+#To create the format for uploading files.
 class FileForm(forms.ModelForm):
     #
     # def __init__(self, *args, **kwargs):
