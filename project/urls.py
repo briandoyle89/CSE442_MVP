@@ -19,7 +19,7 @@ from django.conf.urls.static import settings
 from django.conf.urls.static import static
 from project import views
 
-
+#Connecting all pages together, urls directs towards views--which are our html python coded pages. 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.index, name='index'),
