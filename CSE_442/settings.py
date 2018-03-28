@@ -85,14 +85,17 @@ AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend',)
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'cse442project',
-        'USER': 'cse442',
-        'PASSWORD': 'cse442',
-        'HOST': 'localhost',
-        'PORT': '',
-    }
+    'default': dj_database_url.config(
+        default=config('DATABASE_URL')
+    )
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'cse442project',
+#         'USER': 'cse442',
+#         'PASSWORD': 'cse442',
+#         'HOST': 'localhost',
+#         'PORT': '',
+#     }
 }
 
 
