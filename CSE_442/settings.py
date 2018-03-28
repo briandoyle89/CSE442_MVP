@@ -20,10 +20,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '@it2(r^2#zc!f#g5u=7z!0&ulqwyufhy5ntpl#!d3ruiy5-0x2'
+# SECRET_KEY = '@it2(r^2#zc!f#g5u=7z!0&ulqwyufhy5ntpl#!d3ruiy5-0x2'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = []
 
@@ -84,14 +85,17 @@ AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend',)
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'cse442project',
-        'USER': 'cse442',
-        'PASSWORD': 'cse442',
-        'HOST': 'localhost',
-        'PORT': '',
-    }
+    'default': dj_database_url.config(
+        default=config('DATABASE_URL')
+    )
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'cse442project',
+#         'USER': 'cse442',
+#         'PASSWORD': 'cse442',
+#         'HOST': 'localhost',
+#         'PORT': '',
+#     }
 }
 
 
@@ -147,9 +151,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = (
+    os.path.join(PROJECT_ROOT, 'static'),
+)
 
 
 TEMPLATE_DIRS = (os.path.join(BASE_DIR,  'templates'),)
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
+django_heroku.settings(locals())
