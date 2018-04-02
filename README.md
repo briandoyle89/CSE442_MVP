@@ -2,6 +2,8 @@ CSE 442 Team Information:
 
 Team Name: bits_please
 
+Project Name: UB_Liberator
+
 Members:
 Kartikeya Shukla 
 Ryan Kittleson 
