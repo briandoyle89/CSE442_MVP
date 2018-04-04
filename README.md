@@ -4,12 +4,12 @@ Team Name: bits_please
 
 Project Name: UB_Liberator
 
-Members:
-Kartikeya Shukla 
-Ryan Kittleson 
-Vighnesh Iyer
-Joseph Reimer 
-Brian Doyle 
+Members And Team Roles:
+Kartikeya Shukla: Code Reviewer and Ui/UX Designer - Responsible for file validation.
+Ryan Kittleson: Full Stack Developer(Video and Media)
+Vighnesh Iyer: Front End Developer - Responsible for the main dashboard.
+Joseph Reimer: Tester and Team Manager
+Brian Doyle: Full Stack Developer(Data Engineer)
 
 
 Project Description for MVP:
