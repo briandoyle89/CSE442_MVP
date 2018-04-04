@@ -24,14 +24,14 @@ Submissions tied to account
 Search options
 
 Technical Description:-
-We’ll be building the project in python, and using Django framework to integrate the front-end & back-end. For front-end we’ll be using Bootstrap. We have yet to decide what we’ll be using for our database, although most probably it’s going to be in PostgreSQL.
+We’ll be building the project in python, and using Django framework to integrate the front-end & back-end. For front-end we’ll be using Bootstrap. We have yet to decide what we’ll be using for our database, although most probably it’s going to be in SQLite.
 
 Currently Viewing Our Progress:-
 As we will be developing a webapp, the first stages involved creating placeholder html files that we will be working on and adding to before we can fully incorporate it. Therefor, to check our current progress, the html files must be opened in browser for viewing at this moment.
 
 Additional Features:-
 We might add these later on during the semester:-
-Instructors can upload quizzes in the form of a pdf, docx etc. And the student can complete & submit them online.
+Instructors can upload quizzes in the form of a pdf, docx etc.
 We’ll be making the user/student accounts anonymous so as to encourage more students to interact with each other.
 	Anonymous uploads
 Owners can view submission identities
@@ -46,12 +46,14 @@ A way to support another user’s comments as being truthful/useful
 
 User Story:
 
+As a first semester UB CSE student, I need another resource for studying materials similar to what I need to complete, with the ability to upload and download from a site, along with keeping track of items I have downloaded and uploaded in the past. If I happen to violate any academic integrity rule or academic code of honor, it is solely on my own efforts and responsibility.
+
 I sign up/login into the website, and I see a variety of classes available with resources.
 I click on a class, and I am presented with a variety of learning materials, from past
 study guides to past exams.  I can determine the quality of the help by a group voting
 system.  Via the dashboard, I have the option to upload material of my own.  I have a ratio
 of work submitted to work downloaded, which I need to keep at a certain level to continue
-downloading resources.  This ensures that I help foster an environment of learning
+downloading resources. This ensures that I help foster an environment of learning
 by both learning from others and teaching.
 
 
