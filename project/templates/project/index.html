@@ -10,7 +10,7 @@
     <title>Title</title>
 </head>
 <body>
-<h1>Please note that, any violations of academic integrity is solely the responsibility of the user. Makers of this site cannot be blamed for anything!!!</h1>    
+<h1>Please note that, any violations of academic integrity is solely the responsibility of the user. Makers of this site cannot be blamed for anything!!!</h1>
 
 
     <div id="container">
@@ -76,63 +76,65 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 </head>
 <body id="grad1">
 	<div class = "main">
-		<div class="header" >
+		<div class="header" style="border: none">
 			<h1>Login to UB_Liberator or Create a Free Account </h1>
 		</div>
 		<p><center><strong>Please note that, any violations of academic integrity is solely the responsibility of the user. Makers of this site cannot be blamed for anything!!!</strong></center></p>
 		{% block content %}
 			<form id="login-form" method="POST" action="{% url 'check_register' %}">
 				<ul class="left-form">
-					<h2>Create New Account:</h2>
+					<h3>Create New Account:</h3>
 					<li>
-						<!--<input type="text"   placeholder="Username" required/>-->
 						<input name="username" id="username" input type="text" placeholder="Username" required>
-						<!--<a href="#" class="icon ticker"> </a>-->
 						<div class="clear"> </div>
 					</li>
 					<li>
-						<!--<input type="text"   placeholder="Email" required/>-->
 						<input name="email" id="email" type="email" class="validate white-text" placeholder="Email" required>
-						<!--<a href="#" class="icon ticker"> </a>-->
 						<div class="clear"> </div>
 					</li>
 					<li>
-						<!--<input type="password"   placeholder="password" required/>-->
 						<input name="password" id="password" type="password" class="validate white-text" placeholder="Password" required>
 						<a href="#" class="icon into"> </a>
 						<div class="clear"> </div>
 					</li>
-
+                    <p>{% if message %}
+                        {{ message }}
+                    {% else %}
+                    &nbsp;
+                        {% endif %}
+                    </p>
 					<!--<input type="submit" onclick="myFunction()" value="Create Account">-->
 					{% csrf_token %}
             		<input type="submit" value = "Create Account"></input>
-						<div class="clear"> </div>
+                    <div class="clear"> </div>
 				</ul>
 			</form>
 			<form id="login-form" method="POST" action="{% url 'login_user' %}">
 				<ul class="right-form">
-					<h3>Login</h3>
-					<div>
-						<!--<li><input type="text"  placeholder="Username" required/></li>
-						<li> <input type="password"  placeholder="Password" required/></li>-->
-						<input name="username" id="username" input type="text" placeholder="Username" required>
-						<input name="password" id="password" type="password" class="validate white-text" placeholder="Password" required>
-						<h4>===================</h4>
-                        {% csrf_token %}
-						<input type="submit" value="Login" >
-					</div>
-					<div class="clear"> </div>
+					<h3>Login:</h3>
+
+                    <li>
+						<input name="username" id="username" input type="text" class="validate white-text"  placeholder="Username" required>
+						<div class="clear"> </div>
+					</li>
+					<li>
+                        <input name="password" id="password-input" type="password" class="validate white-text"  placeholder="Password" required>
+						<div class="clear"> </div>
+                    </li>
+                    <h4 style="color: white">================</h4>
+                    {% csrf_token %}
+                    <input type="submit" value="Login" >
+                    <div class="clear"> </div>
 				</ul>
 				<div class="clear"> </div>
-
 			</form>
 
 		</div>
-			<!-----start-copyright---->
-   					<div class="copy-right">
-						<p>Template by <a href="http://w3layouts.com">w3layouts</a></p>
-					</div>
-				<!-----//end-copyright---->
+{#			<!-----start-copyright---->#}
+{#   					<div class="copy-right">#}
+{#						<p>Template by <a href="http://w3layouts.com">w3layouts</a></p>#}
+{#					</div>#}
+{#				<!-----//end-copyright---->#}
 		 {% endblock %}
 
 

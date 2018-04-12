@@ -12,11 +12,6 @@ from django.db.models.fields.files import ImageFieldFile, FileField
 #UserManager model--allows you  to create, manage & delete users.
 class UserManager(BaseUserManager):
     def create_user(self, email, phone_number, date_of_birth, password=None):
-        """
-        Creates and saves a User with the given email, date of
-        birth and password.
-        """
-
 
         user.set_password(password)
         user.save(using=self._db)

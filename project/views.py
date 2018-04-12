@@ -44,15 +44,19 @@ def register(request):
 #Check valid user/registration.
 def check_register(request):
     if request.method == "POST":
-        username = request.POST.get("username")
-        password = request.POST.get("password")
-        email = request.POST.get("email")
-        user = User.objects.create_user(username=username,
-                            password=password,
-                            email=email)
-        user.save()
-        user.backend = 'django.contrib.auth.backends.ModelBackend'
-        return redirect(index)
+        try:
+            username = request.POST.get("username")
+            password = request.POST.get("password")
+            email = request.POST.get("email")
+            user = User.objects.create_user(username=username,
+                                password=password,
+                                email=email)
+            user.save()
+            user.backend = 'django.contrib.auth.backends.ModelBackend'
+            return redirect(index)
+
+        except IntegrityError:
+            return render(request, 'project/index.html', {'message': "Username Already Exists."})
 
 #View list of courses after login.
 @login_required
@@ -60,7 +64,6 @@ def course_list(request):
 
     ##if not user redirect to index w/ message need to sign in
     courses = course.objects.all()
-    for course_ in courses: print(course_)
     user = request.user
     return render(request, 'project/dashboard.html', {'courses': courses,
                                                       'user': user})
