@@ -6,7 +6,7 @@
 	 <meta charset="utf-8">
 	  <meta name="viewport" content="width=device-width, initial-scale=1">
 	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	  <link rel="stylesheet" href="{% static 'project/css/dashboard.css' %}>
+	  <link rel="stylesheet" href="{% static 'project/static/project/css/dashboard.css' %}>
 	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
@@ -38,8 +38,8 @@
 	<div class="container-fluid">     
 	  <div class="row">
 		    <div class="col-sm-2">
-		      <img src="project/cartoon.jpg" class="img-circle" alt="Profile Picture" style="padding-left: 20px; padding-top: 20px;"><br>
-		      <h3 style="padding-left: 30px;">Random User</h3>
+		      <img src="{% static 'project/img/cartoon.jpg' %}" class="img-circle" alt="Profile Picture" style="padding-left: 20px; padding-top: 20px;"><br>
+		      <h3 style="padding-left: 30px;">{{ user.username }}</h3>
 		      <!-- <a id="sidebar-edit-profile-btn" href="#/profile" class="ajax_navigation" data-ch-track-tab-change="" data-name="User Profile" style="padding-left: 70px;">Edit Profile</a><br><br> -->
 
 		      <ul class="nav nav-pills nav-stacked">
@@ -47,6 +47,13 @@
 				  <li><a href="{% url 'my_downloads' %}">My Downloads</a></li>
 				  <li><a href="{% url 'my_uploads' %}">My Uploads</a></li>
 				  <li><a href="{% url 'file_upload' %}">Upload a DOCUMENT</a></li>
+                  <li>
+                      <form id="search-form" method="post" action="{% url 'file_search' %}">
+                          {% csrf_token %}
+                        <input name="search" id="search">
+                        <input type="submit">
+                      </form>
+                  </li>
 			  </ul>
 
 		    </div>
@@ -83,7 +90,7 @@
                       <div id="course_div" style="height:100px; width: 300px; margin: 10px">
                           <form method="post" action="{% url 'course_view' identity=course.course_name %}">
                               {% csrf_token %}
-                              <p>{{ course.course_name }}</p>
+                              <p id="name">{{ course.course_name }}</p>
                               <input class="hide" id="course_name" name="course_name" value="{{ course.course_name }}">
                               <button>
                                   Choose This Class

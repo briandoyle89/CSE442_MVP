@@ -37,8 +37,8 @@
 	<div class="container-fluid">
 	  <div class="row">
 		    <div class="col-sm-2">
-		      <img src="cartoon.jpg" class="img-circle" alt="Cinque Terre" style="padding-left: 20px; padding-top: 20px;"><br>
-		      <h3 style="padding-left: 30px;">Random User</h3>
+		      <img src="{% static 'project/img/cartoon.jpg' %}" class="img-circle" alt="Profile Picture" style="padding-left: 20px; padding-top: 20px;"><br>
+		      <h3 style="padding-left: 30px;">{{ user.username }}</h3>
 		      <!-- <a id="sidebar-edit-profile-btn" href="#/profile" class="ajax_navigation" data-ch-track-tab-change="" data-name="User Profile" style="padding-left: 70px;">Edit Profile</a><br><br> -->
 
 		      <ul class="nav nav-pills nav-stacked">
@@ -46,6 +46,13 @@
 				  <li><a href="{% url 'my_downloads' %}">My Downloads</a></li>
 				  <li class="active"><a href="#">My Uploads</a></li>
 				  <li><a href="{% url 'file_upload' %}">Upload a DOCUMENT</a></li>
+                  <li>
+                      <form id="search-form" method="post" action="{% url 'file_search' %}">
+                          {% csrf_token %}
+                        <input name="search" id="search">
+                        <input type="submit">
+                      </form>
+                  </li>
 			  </ul>
 
 		    </div>
@@ -79,12 +86,25 @@
 			  </div> -->
                 <div id="course_box" style="display: inline">
                   {% for file in file_list %}
-                      <div id="course_div" style="height:100px; width: 300px; margin: 10px">
+                      <div id="course_div" style="height:200px; width: 300px; margin: 10px">
                           <form action="{% url 'download' file_chosen=file.file_link %}">
                             <p>{{ file.file_name }}</p>
+                              <p>Score: {{ file.votes }}</p>
                               <button>
                                   Re-Download this File
                               </button>
+                          </form>
+                          <form action="{% url 'upvote' file_chosen=file.id %}">
+                            <button>
+                                <input class="hidden" name="course_is" id="course_is" value="{{ course_name }}">
+                                  Upvote
+                            </button>
+                          </form>
+                          <form action="{% url 'downvote' file_chosen=file.id %}">
+                            <button>
+                                <input class="hidden" name="course_is" id="course_is" value="{{ course_name }}">
+                                  Downvote
+                            </button>
                           </form>
                       </div>
                   {% endfor %}
