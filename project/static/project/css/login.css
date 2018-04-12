@@ -50,11 +50,13 @@ body{
 .header {
 	text-align:center;
 	padding:1.3em;
+	color:#4d4dff
 }
 .header h1 {
-	color:#272727;
-	font-weight:700;
-	font-size:22px;
+    font-family: Autour One;
+	color:#66b3ff;
+	font-weight:500;
+	font-size:32px;
 }
 .main p{
 	text-align: center;
@@ -71,6 +73,13 @@ body{
 	font-weight:600;
 	margin:15px 3px;
 	color:#3F3D3D;
+}
+.main h7{
+    font-family: Snell Roundhand, cursive;
+	color:#cc0000;
+	font-weight:350;
+	font-size:20px;
+    text-align: center;
 }
 
 .left-form,.right-form{
