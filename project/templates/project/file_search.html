@@ -26,7 +26,7 @@
                     <ul class="nav navbar-nav navbar-right">
                       <!-- <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
                       <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>-->
-		      <li><a href="{% url 'logout_view' %}"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li> 	    
+		      <li><a href="{% url 'logout_view' %}"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
                     </ul>
                   </div>
                 </nav>
@@ -42,10 +42,10 @@
                       <!--<a id="sidebar-edit-profile-btn" href="#/profile" class="ajax_navigation" data-ch-track-tab-change="" data-name="User Profile" style="padding-left: 70px;">Edit Profile</a><br><br> -->
 
                       <ul class="nav nav-pills nav-stacked">
-                          <li><a href=" {% url 'course_list' %}">Home</a></li>
+                          <li class="active"><a href=" {% url 'course_list' %}">Home</a></li>
                           <li><a href="{% url 'my_downloads' %}">My Downloads</a></li>
                           <li><a href="{% url 'my_uploads' %}">My Uploads</a></li>
-                          <li class="active"><a href="{% url 'file_upload' %}">Upload a DOCUMENT</a></li>
+                          <li><a href="{% url 'file_upload' %}">Upload a DOCUMENT</a></li>
                           <li>
                               <form id="search-form" method="post" action="{% url 'file_search' %}">
                                   {% csrf_token %}
@@ -85,17 +85,37 @@
 
                       </div> -->
                         <div id="course_box" style="display: inline">
-                              <form method="post" enctype="multipart/form-data">
-                                {% csrf_token %}
-                                {{ form.as_p }}
-                                <button type="submit">Upload</button>
+                          {% for similar_file in similar_files %}
+                              <div id="course_div" style="height:200px; width: 300px; margin: 10px">
+                                  <form action="{% url 'download' file_chosen=similar_file.file_link %}">
+                                      {% csrf_token %}
+                                    <p>{{ similar_file.file_name }}</p>
+                                    <p>Score: {{ similar_file.votes }}</p>
+                                    <p>{{ similar_file.course }}</p>
+                                      <button>
+                                          Download this File
+                                      </button>
+                                  </form>
+                              <form action="{% url 'upvote' file_chosen=similar_file.id %}">
+                                <button>
+                                    <input class="hidden" name="course_is" id="course_is" value="{{ course_name }}">
+                                      Upvote
+                                </button>
                               </form>
+                              <form action="{% url 'downvote' file_chosen=similar_file.id %}">
+                                <button>
+                                    <input class="hidden" name="course_is" id="course_is" value="{{ course_name }}">
+                                      Downvote
+                                </button>
+                              </form>
+                              </div>
+                          {% endfor %}
+                        </div>
 
                               <p><a href="{% url 'course_list' %}">Return to Courses</a></p>
                       </div>
                     </div>
                 </div>
-            </div>
 
         </body>
     {% endblock %}

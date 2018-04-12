@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+{% load static %}
   <title>About us page</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -35,8 +36,8 @@ font-size: 200%;
 </style>
   </head>
 
+{% block content %}
 <body>
-
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -54,7 +55,7 @@ font-size: 200%;
 </nav>
 
 <div>
-<img src="home-bg.jpg" width="1600" height="600" />
+<img src="{% static '/project/img/home-bg.jpg' %}" width="1600" height="600" />
 
 <div class="centered"><h1 font-color="white"><strong><font size="15" font-color="white">Sharing is Learning</font></strong></h1>
 <br>
@@ -78,9 +79,9 @@ font-size: 200%;
 
 
 
-</div>  
-
-
+</div>
 
 </body>
+
+{% endblock %}
 </html>

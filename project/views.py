@@ -62,7 +62,8 @@ def course_list(request):
     courses = course.objects.all()
     for course_ in courses: print(course_)
     user = request.user
-    return render(request, 'project/dashboard.html', {'courses': courses})
+    return render(request, 'project/dashboard.html', {'courses': courses,
+                                                      'user': user})
 #View courses for which 'this' user downloaded/uploaded files.
 @login_required
 def course_view(request, identity):
@@ -72,7 +73,9 @@ def course_view(request, identity):
         files = file.objects.filter(course=course.objects.get(course_name=course_name))
         user = request.user
         return render(request, 'project/class_view.html', {'files': files,
-                                                           'course_name': course_name})
+                                                           'course_name': course_name,
+                                                           'user': user
+                                                           })
 #Rest are self-explanotary
 @login_required
 def file_upload(request):
@@ -83,6 +86,7 @@ def file_upload(request):
         if form.is_valid():
             fileuploading = form.save(commit=False)
             fileuploading.username = request.user
+
             fileuploading.save()
             courses = course.objects.all()
             return render(request, 'project/dashboard.html', {'courses': courses})
@@ -108,6 +112,28 @@ def download(request, file_chosen):
             return response
     raise Http404
 
+@login_required()
+def upvote(request, file_chosen):
+    course_name = request.POST.get('course_is')
+    file_chosen = file.objects.get(id=file_chosen)
+    files = file.objects.all()
+    file_chosen.upvote(request.user)
+    return render(request, 'project/class_view.html', {'files': files,
+                                                       'course_name': course_name,
+                                                       'user': user
+                                                       })
+
+@login_required()
+def downvote(request, file_chosen):
+    course_name = request.POST.get('course_is')
+    file_chosen = file.objects.get(id=file_chosen)
+    files = file.objects.all()
+    file_chosen.downvote(request.user)
+    return render(request, 'project/class_view.html', {'files': files,
+                                                       'course_name': course_name,
+                                                       'user': user
+                                                       })
+
 @login_required
 def my_uploads(request):
     this_user = request.user
@@ -120,7 +146,23 @@ def my_uploads(request):
             print(file_object)
             file_list.append(file_object)
 
-    return render(request, 'project/myuploads.html', {'file_list': file_list})
+    return render(request, 'project/myuploads.html', {'file_list': file_list,
+                                                      'user': this_user
+                                                      })
+
+@login_required
+def file_search(request):
+    if request.method == 'POST':
+        search_term = request.POST.get("search")
+        similar_files = file.objects.filter(file_name__contains=search_term)
+
+        return render(request, 'project/file_search.html', {'similar_files': similar_files})
+
+    else:
+        courses = course.objects.all()
+        return render(request, 'project/dashboard.html', {'courses': courses,
+                                                          'user': request.user
+                                                          })
 
 
 
@@ -134,7 +176,9 @@ def my_downloads(request):
             this_file = dl_file.file_downloaded
             file_list.append(this_file)
 
-    return render(request, 'project/mydownloads.html', {'file_list': file_list})
+    return render(request, 'project/mydownloads.html', {'file_list': file_list,
+                                                        'user': this_user
+                                                        })
 
 def logout_view(request):
     logout(request)
