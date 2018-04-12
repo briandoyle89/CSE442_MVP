@@ -1,20 +1,21 @@
+<!--
 <!DOCTYPE html>
-{% load staticfiles %}
+
 
 <html lang="en">
 <head>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'project/css/login.css' %}">
+
+    <link rel="stylesheet" href">
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
 <h1>Please note that, any violations of academic integrity is solely the responsibility of the user. Makers of this site cannot be blamed for anything!!!</h1>    
-{% block content %}
+
 
     <div id="container">
         <div id="login">
-            <form id="login-form" method="POST" action="{% url 'login_user' %}">
+            <form id="login-form" method="POST" action="">
                 <div>
                   <input name="username" id="username" class="validate white-text" required>
                   <label for="email-input" class="white-text">Username</label>
@@ -23,18 +24,116 @@
                   <input name="password" id="password-input" type="password" class="validate white-text" required>
                   <label for="password-input" class="white-text">Password</label>
                 </div>
-                {% csrf_token %}
+
                 <button type="submit">Submit</button>
             </form>
-            <form action="{% url 'register' %}">
+            <form action=">
                 <button type="submit">Don't Have an Account? Click Here.</button>
             </form>
         </div>
-        {{ error_message }}
+
 
     </div>
 
-{% endblock %}
+
+
+
+</body>
+</html>
+
+-->
+
+<!-- chaapa hua bakchodi begins now -->
+
+
+<!--
+CREDITS
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<style>
+#grad1 {
+    height: 800px;
+    background-color: #cccccc;
+    background-image: linear-gradient(#93a5cf, #e4efe9);
+}
+</style>
+<head>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'project/css/login.css' %}">
+		<meta charset="utf-8">
+		<!--<link href="css/style.css" rel='stylesheet' type='text/css' />-->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+		<!--webfonts-->
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text.css'/>
+		<!--//webfonts-->
+</head>
+<body id="grad1">
+	<div class = "main">
+		<div class="header" >
+			<h1>Login to UB_Liberator or Create a Free Account </h1>
+		</div>
+		<p><center><strong>Please note that, any violations of academic integrity is solely the responsibility of the user. Makers of this site cannot be blamed for anything!!!</strong></center></p>
+		{% block content %}
+			<form id="login-form" method="POST" action="{% url 'check_register' %}">
+				<ul class="left-form">
+					<h2>Create New Account:</h2>
+					<li>
+						<!--<input type="text"   placeholder="Username" required/>-->
+						<input name="username" id="username" input type="text" placeholder="Username" required>
+						<!--<a href="#" class="icon ticker"> </a>-->
+						<div class="clear"> </div>
+					</li>
+					<li>
+						<!--<input type="text"   placeholder="Email" required/>-->
+						<input name="email" id="email" type="email" class="validate white-text" placeholder="Email" required>
+						<!--<a href="#" class="icon ticker"> </a>-->
+						<div class="clear"> </div>
+					</li>
+					<li>
+						<!--<input type="password"   placeholder="password" required/>-->
+						<input name="password" id="password" type="password" class="validate white-text" placeholder="Password" required>
+						<a href="#" class="icon into"> </a>
+						<div class="clear"> </div>
+					</li>
+
+					<!--<input type="submit" onclick="myFunction()" value="Create Account">-->
+					{% csrf_token %}
+            		<input type="submit" value = "Create Account"></input>
+						<div class="clear"> </div>
+				</ul>
+			</form>
+			<form id="login-form" method="POST" action="{% url 'login_user' %}">
+				<ul class="right-form">
+					<h3>Login</h3>
+					<div>
+						<!--<li><input type="text"  placeholder="Username" required/></li>
+						<li> <input type="password"  placeholder="Password" required/></li>-->
+						<input name="username" id="username" input type="text" placeholder="Username" required>
+						<input name="password" id="password" type="password" class="validate white-text" placeholder="Password" required>
+						<h4>===================</h4>
+                        {% csrf_token %}
+						<input type="submit" value="Login" >
+					</div>
+					<div class="clear"> </div>
+				</ul>
+				<div class="clear"> </div>
+
+			</form>
+
+		</div>
+			<!-----start-copyright---->
+   					<div class="copy-right">
+						<p>Template by <a href="http://w3layouts.com">w3layouts</a></p>
+					</div>
+				<!-----//end-copyright---->
+		 {% endblock %}
 
 
 </body>
