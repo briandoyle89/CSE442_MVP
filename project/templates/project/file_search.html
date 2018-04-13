@@ -96,15 +96,17 @@
                                           Download this File
                                       </button>
                                   </form>
-                              <form action="{% url 'upvote' file_chosen=similar_file.id %}">
-                                <button>
+                              <form method="post" action="{% url 'upvote' file_chosen=file.id %}">
+                              {% csrf_token %}
                                     <input class="hidden" name="course_is" id="course_is" value="{{ course_name }}">
+                                <button>
                                       Upvote
                                 </button>
                               </form>
-                              <form action="{% url 'downvote' file_chosen=similar_file.id %}">
-                                <button>
+                              <form method="post" action="{% url 'downvote' file_chosen=file.id %}">
+                              {% csrf_token %}
                                     <input class="hidden" name="course_is" id="course_is" value="{{ course_name }}">
+                                <button>
                                       Downvote
                                 </button>
                               </form>

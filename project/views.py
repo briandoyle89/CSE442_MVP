@@ -10,6 +10,7 @@ from django.http import HttpResponse
 from django.core.files.storage import FileSystemStorage
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+import re
 
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.urls import reverse
@@ -30,10 +31,6 @@ def login_user(request):
             login(request, this_user)
             print(request.user)
             return redirect(course_list)
-            # return render(request, 'project/index.html', {'error_message': "Incorrect Username or Password."})
-        # for users in user.objects.all():
-        #     if username == users.user_name and password == users.password:
-        #         return redirect(course_list)
         else:
             return render(request, 'project/index.html', {'error_message': "Please Log In."})
     return render(request, 'project/index.html')
@@ -44,17 +41,24 @@ def register(request):
 #Check valid user/registration.
 def check_register(request):
     if request.method == "POST":
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+        email = request.POST.get("email")
+        print(str(len(username)))
+        if len(username) < 3:
+            return render(request, 'project/index.html', {
+                'message': "Username not valid, must be three characters, letters, numbers and underscore and start with a letter or number."})
+        if not re.match('^[A-Za-z0-9]+[A-Za-z0-9_]+[A-Za-z0-9_]+$', username):
+            return render(request, 'project/index.html', {
+                'message': "Username not valid, must be three characters, letters, numbers and underscore and start with a letter or number."})
+
         try:
-            username = request.POST.get("username")
-            password = request.POST.get("password")
-            email = request.POST.get("email")
             user = User.objects.create_user(username=username,
                                 password=password,
                                 email=email)
             user.save()
             user.backend = 'django.contrib.auth.backends.ModelBackend'
             return redirect(index)
-
         except IntegrityError:
             return render(request, 'project/index.html', {'message': "Username Already Exists."})
 
@@ -89,10 +93,14 @@ def file_upload(request):
         if form.is_valid():
             fileuploading = form.save(commit=False)
             fileuploading.username = request.user
-
-            fileuploading.save()
-            courses = course.objects.all()
-            return render(request, 'project/dashboard.html', {'courses': courses})
+            file_name =  fileuploading.file_name
+            if re.match('^[A-Za-z0-9]+[A-Za-z0-9_]+[A-Za-z0-9_]+$', file_name):
+                fileuploading.save()
+                courses = course.objects.all()
+                return render(request, 'project/dashboard.html', {'courses': courses})
+            else:
+                return render(request, 'project/file_upload.html', {'form': form,
+                                                                    'message': "Please enter a valid file name."})
     else:
         form = FileForm()
         return render(request, 'project/file_upload.html', {'form': form})
@@ -118,6 +126,7 @@ def download(request, file_chosen):
 @login_required()
 def upvote(request, file_chosen):
     course_name = request.POST.get('course_is')
+    print(course_name)
     file_chosen = file.objects.get(id=file_chosen)
     files = file.objects.all()
     file_chosen.upvote(request.user)

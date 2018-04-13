@@ -58,7 +58,7 @@
 
 		    </div>
 		    <div class="col-sm-10">
-		     <center><h1> Welcome to {{ course_name }}</h1> </center>
+		     <center><h1> My Downloads </h1> </center>
 		     <!-- <div class="btn-group btn-group-justified">
 					 <div class="btn-group">
 					    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
@@ -94,18 +94,20 @@
                               <button>
                                   Re-Download this File
                               </button>
-                          <form action="{% url 'upvote' file_chosen=file.id %}">
-                            <button>
+                          </form>
+                          <form method="post" action="{% url 'upvote' file_chosen=file.id %}">
+                          {% csrf_token %}
                                 <input class="hidden" name="course_is" id="course_is" value="{{ course_name }}">
+                            <button>
                                   Upvote
                             </button>
                           </form>
-                          <form action="{% url 'downvote' file_chosen=file.id %}">
-                            <button>
+                          <form method="post" action="{% url 'downvote' file_chosen=file.id %}">
+                          {% csrf_token %}
                                 <input class="hidden" name="course_is" id="course_is" value="{{ course_name }}">
+                            <button>
                                   Downvote
                             </button>
-                          </form>
                           </form>
                       </div>
                   {% endfor %}

@@ -5,6 +5,7 @@ from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, Permis
 from django.db import models
 from django.db.models import CASCADE
 from django.db.models import Model, TextField
+from django.core.validators import RegexValidator
 from django.db.models.fields.files import ImageFieldFile, FileField
 # Create your models here.
 
