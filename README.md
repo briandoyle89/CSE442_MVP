@@ -63,7 +63,14 @@ In the event of a conflict, the conflicting teammates will have another teammate
 
 S
 
+The Beta Release video link:https://youtu.be/KJawUlfCWrw
 
+
+The Link to our Landing Page is https://ubliberator3.pythonanywhere.com/aboutus  feel free to view it and see if using our software sounds appealing to you!
+
+The link to our website is: https://ubliberator3.pythonanywhere.com/
+
+==============================================================================================================
 
 [![Join the chat at https://gitter.im/CSE442_MVP_OFFICIAL/Lobby](https://badges.gitter.im/CSE442_MVP_OFFICIAL/Lobby.svg)](https://gitter.im/CSE442_MVP_OFFICIAL/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
