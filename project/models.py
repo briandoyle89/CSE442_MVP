@@ -30,7 +30,7 @@ class course(models.Model):
 
 #Model to upload files, & each uploaded file is associated with a user, hence keep a count too.
 class file(models.Model):
-    file_name = models.CharField(blank=False, max_length=60)
+    file_name = models.CharField(blank=False, validators=[RegexValidator(regex='^[A-Za-z0-9]+[A-Za-z0-9_]+[A-Za-z0-9]_+$', message='Length has to be at least 3 and only letters and numbers.', code='nomatch')], max_length=60)
     username = models.ForeignKey(User, on_delete=CASCADE, null=True, blank=True)
     course = models.ForeignKey(course, on_delete=CASCADE)
     file_link = models.FileField(upload_to='documents/')

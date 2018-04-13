@@ -115,6 +115,17 @@
                                       {% csrf_token %}
                                     <p>{{ similar_file.file_name }}</p>
                                     <p>Score: {{ similar_file.votes }}</p>
+                                  <input id="status">
+                                  <label for="status">
+                                      {% for vote in user_votes %}
+                                      {% if vote.user == user and vote.file == file and vote.vote_type == 'up' %}
+                                      You Upvoted This.
+                                      {% elif vote.user == user and vote.file == file and vote.vote_type == 'down' %}
+                                      You Downvoted This.
+                                      {% else %}
+                                      {% endif %}
+                                      {% endfor %}
+                                  </label>
                                     <p>{{ similar_file.course }}</p>
                                       <button>
                                           Download this File

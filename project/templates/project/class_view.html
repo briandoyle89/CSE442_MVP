@@ -113,6 +113,17 @@
                           <form action="{% url 'download' file_chosen=file.file_link %}">
                             <p>{{ file.file_name }}</p>
                               <p>Score: {{ file.votes }}</p>
+                              <p>
+                                  {% for vote in user_votes %}
+                                  {% if vote.user == user and vote.file == file and vote.vote_type == 'up' %}
+                                  You Upvoted This.
+                                  {% elif vote.user == user and vote.file == file and vote.vote_type == 'down' %}
+                                  You Downvoted This.
+                                  {% else %}
+                                  {% endif %}
+                                  {% endfor %}
+                              </p>
+
                               <button>
                                   Download this File
                               </button>

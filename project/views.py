@@ -78,9 +78,11 @@ def course_view(request, identity):
     if request.method == "POST":
         course_name = request.POST.get("course_name")
         files = file.objects.filter(course=course.objects.get(course_name=course_name))
+        user_votes = UserVotes.objects.all()
         user = request.user
         return render(request, 'project/class_view.html', {'files': files,
                                                            'course_name': course_name,
+                                                           'user_votes': user_votes,
                                                            'user': user
                                                            })
 #Rest are self-explanotary
@@ -126,30 +128,34 @@ def download(request, file_chosen):
 @login_required()
 def upvote(request, file_chosen):
     course_name = request.POST.get('course_is')
-    print(course_name)
     file_chosen = file.objects.get(id=file_chosen)
+    user_votes = UserVotes.objects.all()
     files = file.objects.all()
     file_chosen.upvote(request.user)
     return render(request, 'project/class_view.html', {'files': files,
                                                        'course_name': course_name,
-                                                       'user': user
+                                                       'user_votes': user_votes,
+                                                       'user': request.user
                                                        })
 
 @login_required()
 def downvote(request, file_chosen):
     course_name = request.POST.get('course_is')
     file_chosen = file.objects.get(id=file_chosen)
+    user_votes = UserVotes.objects.all()
     files = file.objects.all()
     file_chosen.downvote(request.user)
     return render(request, 'project/class_view.html', {'files': files,
                                                        'course_name': course_name,
-                                                       'user': user
+                                                       'user_votes': user_votes,
+                                                       'user': request.user
                                                        })
 
 @login_required
 def my_uploads(request):
     this_user = request.user
     files = file.objects.all()
+    user_votes = UserVotes.objects.all()
     file_list = []
     print(this_user)
     for file_object in files:
@@ -159,6 +165,7 @@ def my_uploads(request):
             file_list.append(file_object)
 
     return render(request, 'project/myuploads.html', {'file_list': file_list,
+                                                        'user_votes': user_votes,
                                                       'user': this_user
                                                       })
 
@@ -166,9 +173,11 @@ def my_uploads(request):
 def file_search(request):
     if request.method == 'POST':
         search_term = request.POST.get("search")
+        user_votes = UserVotes.objects.all()
         similar_files = file.objects.filter(file_name__contains=search_term)
 
-        return render(request, 'project/file_search.html', {'similar_files': similar_files})
+        return render(request, 'project/file_search.html', {'similar_files': similar_files,
+                                                        'user_votes': user_votes})
 
     else:
         courses = course.objects.all()
@@ -176,12 +185,11 @@ def file_search(request):
                                                           'user': request.user
                                                           })
 
-
-
 @login_required
 def my_downloads(request):
     this_user = request.user
     downloaded_files = downloaded_file.objects.all()
+    user_votes = UserVotes.objects.all()
     file_list = []
     for dl_file in downloaded_files:
         if dl_file.username == this_user:
@@ -189,6 +197,7 @@ def my_downloads(request):
             file_list.append(this_file)
 
     return render(request, 'project/mydownloads.html', {'file_list': file_list,
+                                                        'user_votes': user_votes,
                                                         'user': this_user
                                                         })
 
