@@ -123,9 +123,9 @@
                                   <input id="status">
                                   <label for="status">
                                       {% for vote in user_votes %}
-                                      {% if vote.user == user and vote.file == file and vote.vote_type == 'up' %}
+                                      {% if vote.user == user and vote.file == similar_file and vote.vote_type == 'up' %}
                                       You Upvoted This.
-                                      {% elif vote.user == user and vote.file == file and vote.vote_type == 'down' %}
+                                      {% elif vote.user == user and vote.file == similar_file and vote.vote_type == 'down' %}
                                       You Downvoted This.
                                       {% else %}
                                       {% endif %}
@@ -136,14 +136,14 @@
                                           Download this File
                                       </button>
                                   </form>
-                              <form method="post" action="{% url 'upvote' file_chosen=file.id %}">
+                              <form method="post" action="{% url 'upvote' file_chosen=similar_file.id %}">
                               {% csrf_token %}
                                     <input class="hidden" name="course_is" id="course_is" value="{{ course_name }}">
                                 <button>
                                       Upvote
                                 </button>
                               </form>
-                              <form method="post" action="{% url 'downvote' file_chosen=file.id %}">
+                              <form method="post" action="{% url 'downvote' file_chosen=similar_file.id %}">
                               {% csrf_token %}
                                     <input class="hidden" name="course_is" id="course_is" value="{{ course_name }}">
                                 <button>
