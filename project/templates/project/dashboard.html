@@ -1,16 +1,39 @@
 <!DOCTYPE html>
 <html>
+<style>
+#grad1 {
+    height: 800px;
+    background-color: #cccccc;
+    background-image: linear-gradient(#93a5cf, #e4efe9);
+}
+
+#grad2{
+    background-color:  #e6e6ff;
+    width: max-content;
+    border-style: double;
+    border-color: #9999ff;
+    border-width: 5px;
+    padding: 15px;
+    margin: 15px;
+}
+
+#grad3{
+    font-family: 'Graduate';
+}
+
+</style>
 <head>
     {% load static %}
 	<title></title>
 	 <meta charset="utf-8">
 	  <meta name="viewport" content="width=device-width, initial-scale=1">
+	 <link href='https://fonts.googleapis.com/css?family=Graduate' rel='stylesheet'>	
 	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	  <link rel="stylesheet" href="{% static 'project/static/project/css/dashboard.css' %}>
 	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
-<body>
+<body id = "grad1">
     {% block content %}
 
 	<!--Navigation Bar  begins-->
@@ -38,8 +61,9 @@
 	<div class="container-fluid">     
 	  <div class="row">
 		    <div class="col-sm-2">
-		      <img src="{% static 'project/img/cartoon.jpg' %}" class="img-circle" alt="Profile Picture" style="padding-left: 20px; padding-top: 20px;"><br>
-		      <h3 style="padding-left: 30px;">{{ user.username }}</h3>
+			<div id="grad2">		 
+		      <center><img src="{% static 'project/img/cartoon.jpg' %}" class="img-circle" alt="Profile Picture" style="padding-left: auto; padding-top: 20px; padding-right: auto"></center><br>
+		     <div id = "grad3"> <center><h3 style="padding-left: auto;">{{ user.username }}</h3></center></div>
 		      <!-- <a id="sidebar-edit-profile-btn" href="#/profile" class="ajax_navigation" data-ch-track-tab-change="" data-name="User Profile" style="padding-left: 70px;">Edit Profile</a><br><br> -->
 
 		      <ul class="nav nav-pills nav-stacked">
@@ -50,12 +74,12 @@
                   <li>
                       <form id="search-form" method="post" action="{% url 'file_search' %}">
                           {% csrf_token %}
-                        <input name="search" id="search">
-                        <input type="submit">
+                        <input name="search" id="search" placeholder="Search For Anything">
+                        <input type="submit" value="Search">
                       </form>
                   </li>
 			  </ul>
-
+			</div>
 		    </div>
 		    <div class="col-sm-10">
 		     <center><h1> Go Ahead and Master Your Courses | Search and find all you need</h1> </center> 
