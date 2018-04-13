@@ -1,5 +1,5 @@
 from django import forms
-from .models import file, User
+from .models import file, User, course
 #To create the format for uploading files.
 class FileForm(forms.ModelForm):
     #

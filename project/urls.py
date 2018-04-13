@@ -30,6 +30,7 @@ urlpatterns = [
     url(r'^check_register', views.check_register, name='check_register'),
     url(r'^course_list$', views.course_list, name='course_list'),
     url(r'^file_upload$', views.file_upload, name='file_upload'),
+    url(r'^upvote/(?P<file_chosen>.*)$', views.upvote, name='upvote'),
     url(r'^my_uploads$', views.my_uploads, name='my_uploads'),
     url(r'^my_downloads$', views.my_downloads, name='my_downloads'),
     url(r'^download/(?P<file_chosen>.*)$', views.download, name='download'),

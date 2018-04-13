@@ -2,17 +2,40 @@
 {% load staticfiles %}
 
 <html lang="en">
+<style>
+#grad1 {
+    height: 800px;
+    background-color: #cccccc;
+    background-image: linear-gradient(#93a5cf, #e4efe9);
+}
+
+#grad2{
+    background-color:  #e6e6ff;
+    width: max-content;
+    border-style: double;
+    border-color: #9999ff;
+    border-width: 5px;
+    padding: 15px;
+    margin: 15px;
+}
+
+#grad3{
+    font-family: 'Graduate';
+}
+
+</style>
 <head>
     {% load static %}
     <link rel="stylesheet" href="{% static 'project/css/login.css' %}">
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<body>
-<h1>Please note that, any violations of academic integrity is solely the responsibility of the user. Makers of this site cannot be blamed for anything!!!</h1>    
+<body id = "grad1">
+<h1>Please note that, any violations of academic integrity is solely the responsibility of the user. Makers of this site cannot be blamed for anything!!!</h1>
 {% block content %}
 
     <div id="container">
+    <center><div id = "grad2">
         <div id="login">
             <form id="login-form" method="POST" action="{% url 'login_user' %}">
                 <div>
@@ -31,7 +54,7 @@
             </form>
         </div>
         {{ error_message }}
-
+    </div></center>
     </div>
 
 {% endblock %}
