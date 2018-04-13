@@ -92,11 +92,14 @@ def file_upload(request):
 
     if request.method == 'POST':
         form = FileForm(request.POST, request.FILES)
+        print("here2")
         if form.is_valid():
             fileuploading = form.save(commit=False)
             fileuploading.username = request.user
-            file_name =  fileuploading.file_name
+            file_name = fileuploading.file_name
+            print("here1")
             if re.match('^[A-Za-z0-9]+[A-Za-z0-9_]+[A-Za-z0-9_]+$', file_name):
+                print("here")
                 fileuploading.save()
                 courses = course.objects.all()
                 return render(request, 'project/dashboard.html', {'courses': courses})

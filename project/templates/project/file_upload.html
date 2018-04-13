@@ -6,7 +6,6 @@
     background-color: #cccccc;
     background-image: linear-gradient(#93a5cf, #e4efe9);
 }
-
 #grad2{
     background-color:  #e6e6ff;
     width: max-content;
@@ -16,15 +15,12 @@
     padding: 15px;
     margin: 15px;
 }
-
 #grad3{
     font-family: 'Graduate';
 }
-
 #grad4{
     padding-left: 100px;
 }
-
 </style>
 <head>
     {% load static %}
@@ -53,7 +49,7 @@
                     <ul class="nav navbar-nav navbar-right">
                       <!-- <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
                       <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>-->
-		      <li><a href="{% url 'logout_view' %}"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li> 	    
+		      <li><a href="{% url 'logout_view' %}"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
                     </ul>
                   </div>
                 </nav>
@@ -64,7 +60,7 @@
             <div class="container-fluid">
               <div class="row">
                     <div class="col-sm-2">
-			<div id="grad2">    
+			<div id="grad2">
                       <center><img src="{% static 'project/img/cartoon.jpg' %}" class="img-circle" alt="Profile Picture" style="padding-left: auto; padding-top: 20px; padding-right: auto"></center><br>
                       <div id = "grad3"> <center><h3 style="padding-left: auto;">{{ user.username }}</h3></center></div>
 
@@ -111,7 +107,6 @@
                             <div class="btn-group">
                                 <a href="#" class="btn btn-primary">SEARCH</a>
                             </div>
-
                       </div> -->
 			    <div id = "grad4">
                         <div id="course_box" style="display: inline">
