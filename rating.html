@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="rating.css"/>
+  </head>
+  <body>
+    <h1> Vote down if the document violates academic integrity, if not vote up</h1>
+
+    <div class="up">
+      <button id="button" onclick="up()">
+      <i class="fa fa-thumbs-up"></i>
+    </button>
+    </div>
+    <p type="text" id="good"</p>
+
+    <div class="down">
+      <button id="button" onclick="down()">
+      <i class="fa fa-thumbs-down"></i>
+    </button>
+    </div>
+    <p type="text" id="bad"</p>
+
+
+    <script>
+    var upvote = 0;
+    function up(){
+      document.getElementById("good").innerHTML=upvote;
+      upvote=upvote +1;
+    }
+
+    var downvote = 0;
+    function down(){
+      document.getElementById("bad").innerHTML=downvote;
+      downvote = downvote +1;
+    }
+    </script>
+
+  </body>
+</html>
