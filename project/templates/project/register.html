@@ -1,14 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+<style>
+#grad1 {
+    height: 800px;
+    background-color: #cccccc;
+    background-image: linear-gradient(#93a5cf, #e4efe9);
+}
+
+#grad2{
+    background-color:  #e6e6ff;
+    width: max-content;
+    border-style: double;
+    border-color: #9999ff;
+    border-width: 5px;
+    padding: 15px;
+    margin: 15px;
+}
+
+#grad3{
+    font-family: 'Graduate';
+}
+
+</style>
 <head>
     {% load static %}
     <link rel="stylesheet" href="{% static 'project/css/login.css' %}">
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<body>
+<body id = "grad1">
 
     {% block content %}
+        <center><div id = "grad2">
     <div id="login">
         <form id="login-form" method="POST" action="{% url 'check_register' %}">
             <div>
@@ -26,7 +49,7 @@
             {% csrf_token %}
             <button type="submit">Submit</button>
         </form>
-    </div>
+    </div> </div></center>
 
     {% endblock %}
 

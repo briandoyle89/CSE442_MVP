@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+{% load static %}
   <title>About us page</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -35,8 +36,8 @@ font-size: 200%;
 </style>
   </head>
 
+{% block content %}
 <body>
-
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -44,7 +45,7 @@ font-size: 200%;
     </div>
     <ul class="nav navbar-nav">
       <li><a href=" {% url 'course_list' %} ">DashBoard</a></li>
-     <li class="active"><a href="{% url 'aboutus' %}">About Us</a></li>
+     <li class="active"><a href="{% url 'aboutus' %}">Landing Page(About Us)</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
@@ -54,11 +55,11 @@ font-size: 200%;
 </nav>
 
 <div>
-<img src="{% static 'project/img/home-bg.jpg' %}" width="1600" height="600" />
+<img src="{% static '/project/img/home-bg.jpg' %}" width="1600" height="600" />
 
 <div class="centered"><h1 font-color="white"><strong><font size="15" font-color="white">Sharing is Learning</font></strong></h1>
 <br>
-<p align="center"><h3>UB_Liberator is built to help students share learning resources. You can download old hws, exams, code etc for CSE courses at UB. Furthermore you can upload similar files to share with other students.</h3></p>
+<p align="center"><h3>UB_Liberator is built to help students share learning resources. You can download old homeworks, exams, code, etc. for CSE courses at UB. Furthermore, you can upload similar files to share with other students.</h3></p>
 </div>
 <br>
 <div id="rectangle" style="width:number px; height:number px; background-color:#ad3c5a">
@@ -69,18 +70,139 @@ font-size: 200%;
 <div class="matolu">Kartikeya Shukla- Code Reviewer and UI/UX Designer</div>
 <div class="matolu">Vighnesh Iyer- Front end developer -  responsible for the main dashboard page</div>
 <div class="matolu">Joseph Reimer- Tester, Team Manager</div>
-<div class="matolu">Brian Doyle- Full Stack Devloper(Data Engineer)</div>
+<div class="matolu">Brian Doyle- Full Stack Developer(Data Engineer)</div>
 <div class="matolu">Ryan Kittleson- Full Stack Developer</div>
 
 
 </div>
 
+<div id="rectangle" style="width:number px; height:number px; background-color:#90EE90">
+<div class="team">Project Description</div>
+</div>
+<div>
+<p align="center"><h3>From the Developers of UB_Liberator, bits_please-<br><br>
+
+Our website UB_Liberator is designed to allow students, specifically CSE students at UB, to have access to another resource for class notes and materials they may have lost or not completed correctly. Through being able to search for files, and rate them through an upvote/downvote system, students can find the information they need to succeed to the best of their capabilities. Files uploaded by users are their own works and any transgressions of academic integrity or other code of conduct is not the fault of the developers, bits_please.
+</h3></p>
+</div>
+
+<div id="rectangle" style="width:number px; height:number px; background-color:#6495ED">
+<div class="team">Description for Users</div>
+</div>
+
+<div>
+<p align="center"><h3>Please follow this link to our website-<br><a href="https://ubliberator3.pythonanywhere.com/login_user?next=/course_list"> https://ubliberator3.pythonanywhere.com/login_user?next=/course_list</a> . Upon creating an account, you will be taken to the main Dashboard page of our site, where you can begin to find the documents and pages you need to do the best that you can in your courses! The left side of the page holds the tools you need to browse through our current course list, view your previous downloads and uploads, and upload a document.</h3></p>
+</div>
+
+<div id="rectangle" style="width:number px; height:number px; background-color:#008080">
+<div class="team">Submitting a Bug Report</div>
+</div>
+
+<div>
+<p align="center"><h3>If you experience any troubles while using our site, bugs can be reported at our GitHub repository at <a href="https://github.com/briandoyle89/CSE442_MVP/issues"> https://github.com/briandoyle89/CSE442_MVP/issues</a> . The more information you can provide about the problems you encounter, the better we can solve them and create a more positive user experience for all users.</h3>
+</div>
+
+<div id="rectangle" style="width:number px; height:number px; background-color:#df633a">
+<div class="team">If More Help Is Needed, Look Here!</div>
+</div>
+
+<div>
+<p align="center"><h3>This section is intended for users in need of further instruction for utilizing our project-<br><br>Team: bits_please<br>
+Project: UB_Liberator<br>
+<br><br>
+Project can be accessed/run at <a href="https://ubliberator3.pythonanywhere.com/login_user?next=/course_list">https://ubliberator3.pythonanywhere.com/login_user?next=/course_list</a><br><br>							
+
+Use Cases:<br>
+- Register/Login<br>
+- Uploading a File<br>
+- Downloading a File<br>
+- Searching Files by Class<br><br>
+
+Testing Procedures:<br>
+- Registering and being able to login coinciding, creates account that you can see.<br>
+- Uploading a File, can search it to confirm it has been uploaded.
+<br><br>
+<strong>Use Cases-</strong><br>
+<br>
+       1. Registering-<br>
+User - A typical user is a student who is taking CSE courses at UB who needs additional resources to help ease through his/her CSE course
+<br><br>
+Why is it related to the description - As mentioned in the ReadMe, our project is a file sharing website, and hence for a user to use this website, he/she has to register which makes it an appropriate use case.
+ <br><br>
+ As a UB CSE student upon opening the site, I can press the button on the left side of the screen “Don’t Have an Account? Click Here.” to be taken to a screen where a valid format of email, a username that hasn’t been taken yet, and a password that is not blank, can be entered into their corresponding boxes to the left of their texts (Email, Username, and Password) and after using the keyboard to type your responses and clicking submit, your account is created.
+<br><br>
+       2.  Downloading a File -<br>
+User - A typical user is a student who is taking CSE courses at UB who needs additional resources to help ease through his/her CSE course.
+<br><br>
+Why is it related to the description - As mentioned in the user story section of our ReadMe, our project is a file sharing website where a user can download study material from our website, thereby making ‘downloading a file’ an appropriate use case.
+<br><br>
+As a CSE student at UB, after logging into the site, I can view on the dashboard the classes CSE115 and CSE442, and their corresponding buttons “Choose This Class” below them. By clicking on their respective “Choose This Class” buttons, I can then see the list of materials for the course available for download. Then, by navigating down the list of file names and their respective “Download this File” buttons, I can find a file I want, and click the “Download this File” button, to begin the download. I can check the downloads folder of the computer I used to click the “Download this File” button, to see if it was successfully downloaded. This will verify that the download functionality works.
+
+<br><br>
+
+
+        3. Uploading A File- <br>
+User - A typical user is a student who is taking CSE courses at UB who needs additional resources to help ease through his/her CSE course
+<br><br>
+Why is it related to the description - As mentioned in the user story section of our ReadMe, our project is a file sharing website where a user can upload study materials from our website for other users to leverage it, thereby making ‘uploading a file’ an appropriate use case.
+<br><br>
+As a UB CSE student, after logging into the site, and being taken to the Dashboard automatically, I can click on the button on the left navigation bar titled “Upload a DOCUMENT” and after clicking into the box to the right of “File name:” and entering information for a file name, choosing a course, and choosing a file, I can click upload to upload the file to the specified course.
+<br><br>
+
+       4. Searching Files By Class- <br>
+User - A typical user is a student who is taking CSE courses at UB who needs additional resources to help ease through his/her CSE course
+<br><br>
+Why is it related to the description - As mentioned in the user story section of our ReadMe, our project is a file sharing website where a user can download study materials from our website for other users to leverage it. In order to search for relevant documents, we’ll be implementing a search files by class functionality for our beta-release which will be an appropriate use case.
+<br><br>
+As a UB CSE student, after logging into the site and being taken to the Dashboard, the user can select from a drop down menu button labelled Select Course, the course he/she wants the study materials for. Once user selects the course and clicks the search button, all the files associated with that course will be populated on the screen, and then the user can download any of the files that he/she wants.  
+<br><br>
+	<strong>Testing Procedures-</strong><br>
+
+  1. Uploading a File, can search it to confirm it has been uploaded.<br>
+
+Target-The target is to test the process of uploading a file to our site, UB_Liberator, from the user’s computer.
+<br><br>
+Testing  Procedure- A user must log in/register at our UB_Liberator landing page. 
+After this, the user is taken to the Dashboard page, where there is a blue-colored button called --”Upload a DOCUMENT” located below the “My Uploads” button at the 4th position on the left navigation bar of the page. 
+On clicking it, the user is told to enter the file_name, and is asked to select the course for which they are uploading the file. 
+Then there is a button called “Choose file” which allows the user to select the file to be uploaded  from their local system. 
+Next is the “Upload” button which the user clicks to upload their file to the website. After filling in the file_name, course, and have chosen the file to be uploaded, the “Upload” button must be clicked.
+<br><br>
+Expected Outcome-After following the testing procedure step by step, the file should show up in the “My Uploads” section (located at the 2nd position of the navigation bar positioned on left-most side of the page). “My Uploads” is a button above the “Upload a DOCUMENT” button, and by clicking it, a user can see the files they have uploaded to the website. Hence, verifying that the Upload functionality actually works. The user can also double check by clicking back to the dashboard, selecting the class they chose for the file, and scrolling down the page until they can view their file in that way.
+<br><br>
+
+ 2. Registering 
+<br><br>
+Target-In order to enable the user story, the user has to register and make an account on our website. The target is to test the procedure for registering on to our UB_Liberator site, using their login credentials viz. Email id, username and password which the user can choose.
+<br><br>	
+Testing Procedure - On the Login page click on the “Don’t Have an Account? Click Here” button to create an account. On doing so, the user will be directed to another login page which will have the following input boxes labelled -  Email, Username and Password. 
+In the email box input any email of your choosing It doesn’t specifically have to be your UB mail address). 
+Then click on the “Password” and the “Username” box and input any username and password of your choosing. 
+After inputting all three click the “Submit” button. 
+Once the information is submitted you will be redirected back to the Login page. On the login page input the same username and password that you used for registering and click “Submit”. 
+You have now created an account and logged in successfully.
+<br><br>	
+Expected Outcome- After the student clicks “Submit”, the account should be fully created, and then when the page goes back to the login page, you should be able to fill out the username and password boxes by clicking on them and typing in your appropriate credentials. Then, clicking “Submit” should log you in and direct you to the main Dashboard page.
+</h3></p>
+</div>
+
+<div id="rectangle" style="width:number px; height:number px; background-color:#666633">
+<div class="team">Instructional Videos to "run" UB_Liberator</div>
+</div>
+<div>
+<p align="center"><h3> Prototype Video</h3></p><br>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/SKBC7Gm7-KI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<br>
+<p align="center"><h3> Alpha-Release Video</h3></p><br>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/pqN3ANPt9Qo" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+</div>
 
 
 
-</div>  
 
-
+</div>
 
 </body>
+
+{% endblock %}
 </html>

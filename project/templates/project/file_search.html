@@ -22,8 +22,8 @@
 }
 
 #grad4{
-    padding-left: 100px;
-}
+    padding-left: 200px;
+}	
 
 </style>
 <head>
@@ -53,7 +53,7 @@
                     <ul class="nav navbar-nav navbar-right">
                       <!-- <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
                       <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>-->
-		      <li><a href="{% url 'logout_view' %}"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li> 	    
+		      <li><a href="{% url 'logout_view' %}"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
                     </ul>
                   </div>
                 </nav>
@@ -66,27 +66,26 @@
                     <div class="col-sm-2">
 			<div id="grad2">    
                       <center><img src="{% static 'project/img/cartoon.jpg' %}" class="img-circle" alt="Profile Picture" style="padding-left: auto; padding-top: 20px; padding-right: auto"></center><br>
-                      <div id = "grad3"> <center><h3 style="padding-left: auto;">{{ user.username }}</h3></center></div>
-
+		     <div id = "grad3"> <center><h3 style="padding-left: auto;">{{ user.username }}</h3></center></div>
                       <!--<a id="sidebar-edit-profile-btn" href="#/profile" class="ajax_navigation" data-ch-track-tab-change="" data-name="User Profile" style="padding-left: 70px;">Edit Profile</a><br><br> -->
 
                       <ul class="nav nav-pills nav-stacked">
-                          <li><a href=" {% url 'course_list' %}">Home</a></li>
+                          <li class="active"><a href=" {% url 'course_list' %}">Home</a></li>
                           <li><a href="{% url 'my_downloads' %}">My Downloads</a></li>
                           <li><a href="{% url 'my_uploads' %}">My Uploads</a></li>
-                          <li class="active"><a href="{% url 'file_upload' %}">Upload a DOCUMENT</a></li>
+                          <li><a href="{% url 'file_upload' %}">Upload a DOCUMENT</a></li>
                           <li>
                               <form id="search-form" method="post" action="{% url 'file_search' %}">
                                   {% csrf_token %}
                                 <input name="search" id="search" placeholder="Search For Anything">
-                                <input type="submit" value="Search">
+                                 <input type="submit" value="Search">
                               </form>
                           </li>
                       </ul>
 			    </div>
                     </div>
                     <div class="col-sm-10">
-                        <h1 style="padding-left: 30px;">Files must be at least 3 characters, begin with a letter, and consist only of letters, numbers and/or underscores.</h1>
+                     <center><h1> Welcome to {{ course_name }}</h1> </center>
                 <!--      <div class="btn-group btn-group-justified">
                              <div class="btn-group">
                                 <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
@@ -113,22 +112,56 @@
                             </div>
 
                       </div> -->
-			    <div id = "grad4">
+			 <div id = "grad4">   
                         <div id="course_box" style="display: inline">
-                              <p>{{ message }}</p>
-                              <form method="post" enctype="multipart/form-data">
-                                {% csrf_token %}
-                                {{ form.as_p }}
-                                <button type="submit">Upload</button>
+                          {% for similar_file in similar_files %}
+                              <div id="course_div" style="height:200px; width: 300px; margin: 10px">
+                                  <form action="{% url 'download' file_chosen=similar_file.file_link %}">
+                                      {% csrf_token %}
+                                    <p>{{ similar_file.file_name }}</p>
+                                    <p>Score: {{ similar_file.votes }}</p>
+                                  <input id="status">
+                                  <label for="status">
+                                      {% for vote in user_votes %}
+                                      {% if vote.user == user and vote.file == similar_file and vote.vote_type == 'up' %}
+                                      You Upvoted This.
+                                      {% elif vote.user == user and vote.file == similar_file and vote.vote_type == 'down' %}
+                                      You Downvoted This.
+                                      {% else %}
+                                      {% endif %}
+                                      {% endfor %}
+                                  </label>
+                                    <p>{{ similar_file.course }}</p>
+                                      <button>
+                                          Download this File
+                                      </button>
+                                  </form>
+                              <form method="post" action="{% url 'upvote' file_chosen=similar_file.id %}">
+                              {% csrf_token %}
+                                    <input class="hidden" name="course_is" id="course_is" value="{{ course_name }}">
+                                <button>
+                                      Upvote
+                                </button>
                               </form>
+                              <form method="post" action="{% url 'downvote' file_chosen=similar_file.id %}">
+                              {% csrf_token %}
+                                    <input class="hidden" name="course_is" id="course_is" value="{{ course_name }}">
+                                <button>
+                                      Downvote
+                                </button>
+                              </form>
+                              </div>
+                          {% endfor %}
+                        </div>
 
-                              <div id = "grad3" style="padding-top: 10px;"><p><a href="{% url 'course_list' %}">Return to Courses</a></p></div>
-			</div>
-			</div>
+                              <p><a href="{% url 'course_list' %}">Return to Courses</a></p>
+                      </div>
                     </div>
+		    </div>
                 </div>
-            </div>
 
         </body>
     {% endblock %}
 </html>
+
+
