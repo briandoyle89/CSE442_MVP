@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     {% load static %}
-	<title>Dashboard</title>
-	 <meta charset="utf-8">
-	  <meta name="viewport" content="width=device-width, initial-scale=1">
-	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	  <link rel="stylesheet" href="myPage.css">
-	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</head>
-<body>
-    <div style = "padding: 0 20px 0 20px">
+    <title>Dashboard</title>
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Graduate' rel='stylesheet'>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'project/static/project/css/dashboard.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+  <body>
     {% block content %}
-	<!--Navigation Bar  begins-->
-		<nav class="navbar navbar-inverse">
-		  <div class="container-fluid">
+    <div style="margin: 0 auto; padding: 0 20px 0 20px;background-color: #cccccc; background-image: linear-gradient(#93a5cf, #e4efe9);">
+    <!--Navigation Bar  begins-->
+      <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
 		    <div class="navbar-header">
 		      <a class="navbar-brand" href="#">UB_Liberator</a>
 		    </div>
@@ -25,41 +26,49 @@
 		      <!--<li><a href="#">Contact</a></li> -->
 		    </ul>
 		    <ul class="nav navbar-nav navbar-right">
-		      <!--<li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+		      <!-- <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
 		      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li> -->
 		      <li><a href="{% url 'logout_view' %}"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
 		    </ul>
-		  </div>
-		</nav>
-	<!-- Nav bar ends -->
-    <!-- slogon  begins -->
-        <div style="background-image: url(books.png); background-repeat: no-repeat; background-size: contain; background-color: #2874A6; padding: 5px; border-radius: 10px">
-		  <h1 style="color: #fffaf0;text-align: right;  padding-right: 30px"> Go Ahead and Master Your Courses <br> Search and find all you need <br></h1>
         </div>
+      </nav>
+	<!-- Nav bar ends -->
+    
+    <!-- slogon  begins -->
+    <div style="background-color:#1C6EA4; border: 3px solid #1C6EA4; border-radius: 200px 0px 0px 0px; color: #cccccc; text-align: right; padding-right: 30px; text-shadow: 2px 2px 2px #000000;">
+      <h1> Go Ahead and Master Your Courses <br> Search and find all you need <br></h1>
+    </div>
     <!-- slogon ends -->
-    <br>
-	<!-- Profile pic bakchodi begins -->
-
-	<div class="container-fluid" >     
-	  <div class="row">
-		    <div class="col-sm-3"; style="border: 2px solid black; padding: 2px; border-radius: 10px; background-color: lightgrey" >
-		        <img src="cartoon.jpg" class="img-circle" alt="Profile Picture" style="padding-left: 20px; padding-top: 20px;"><br>
-		        <h3 style="padding-left: 30px; color: darkblue">Random User</h3>
-		        <!--<a id="sidebar-edit-profile-btn" href="#/profile" class="ajax_navigation" data-ch-track-tab-change="" data-name="User Profile" style="padding-left: 70px;">Edit Profile</a><br><br>
-                    -->
-                <br><br>
-		        <ul class="nav nav-pills nav-stacked">
+    
+    <!-- Conteints Begins -->
+    <div style="min-height: 700px; border: 10px solid #1C6EA4; background: #D0E4F5 url('books.png') no-repeat scroll 95% 90%; background-size: 400px 300px;">
+      <!-- Left Column -->
+      <div class="col-sm-4">
+        <div style="background-color: #e6e6ff; border-style: double; border-color: #9999ff; border-width: 5px; padding: 15px; margin: 15px; box-shadow: 5px 5px 15px 5px #000000;">
+          <center>
+           <img src="{% static 'project/img/cartoon.jpg' %}" class="img-circle" alt="Profile Picture" style="padding-left: auto; padding-top: 20px; padding-right: auto">
+           <br>
+           <h3 style="padding-left: auto;">{{ user.username }}</h3>
+          </center>
+          <hr/>
+          <ul class="nav nav-pills nav-stacked">
 				  <li class="active"><a href="{% url 'course_list' %}#">Home</a></li>
 				  <li><a href="{% url 'my_downloads' %}">My Downloads</a></li>
 				  <li><a href="{% url 'my_uploads' %}">My Uploads</a></li>
 				  <li><a href="{% url 'file_upload' %}">Upload a DOCUMENT</a></li>
-			    </ul>
-                <br>
-		    </div>
-            
-		    <div class="col-sm-9">
-               <!--
-		      <div class="btn-group btn-group-justified">
+                  <li>
+                      <form id="search-form" method="post" action="{% url 'file_search' %}">
+                          {% csrf_token %}
+                        <input name="search" id="search" placeholder="Search For Anything">
+                        <input type="submit" value="Search">
+                      </form>
+                  </li>
+	      </ul>
+        </div>
+      </div>
+      <!-- Right Column -->
+      <div class="col-sm-8">
+        <!-- <div class="btn-group btn-group-justified">
 					 <div class="btn-group">
 					    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
 					    Select Your Subject <span class="caret"></span></button>
@@ -83,40 +92,30 @@
 					<div class="btn-group">
 						<a href="#" class="btn btn-primary">SEARCH</a>
 					</div>
-				   
-			  </div> 
-               <br>
-              <div > -->
-              <div id="course_box" style="display: inline">
+			  </div> -->
+        <div id="course_box" style="display: inline; margin: 15px">
                   {% for course in courses %}
                       <div id="course_div" style="height:100px; width: 300px; margin: 10px">
                           <form method="post" action="{% url 'course_view' identity=course.course_name %}">
                               {% csrf_token %}
-                              <p>{{ course.course_name }}</p>
+                              <p id="name">{{ course.course_name }}</p>
                               <input class="hide" id="course_name" name="course_name" value="{{ course.course_name }}">
                               <button>
                                   Choose This Class
                               </button>
                           </form>
                       </div>
-                      <br><br><br><br><br><br>
                   {% endfor %}
-              </div>
-              </div>
+		</div>	
+      </div>
 {#            <div>#}
 {#                <p>{{ request.user }}</p>#}
 {#            </div>#}
-
-
-
-		   	</div>
-	    </div>
-	</div>
-
-{% endblock %}
     </div>
-
-</body>
+    <!-- Conteints Ends -->
+    </div>
+    {% endblock %}
+  </body>
 </html>
 
 {% block scripts %}
