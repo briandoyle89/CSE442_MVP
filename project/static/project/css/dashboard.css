@@ -1,4 +1,4 @@
-.course_div{
+#course_div{
     height:100px;
     width:300px;
     color: black;
@@ -8,4 +8,20 @@
     border-width: 2px;
     border-radius: 5px;
     margin:10px;
+}
+
+.course_box{
+    height:100px;
+    width:300px;
+    background-color: black;
+    text-align: center;
+    float: left;
+    border: dashed;
+    border-width: 2px;
+    border-radius: 5px;
+    margin:10px;
+}
+
+#name{
+    font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
 }
