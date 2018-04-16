@@ -119,7 +119,7 @@ def my_uploads(request):
             print(file_object.username)
             print(file_object)
             file_list.append(file_object)
-
+    this_user.submissions += 1
     return render(request, 'project/myuploads.html', {'file_list': file_list})
 
 
@@ -133,7 +133,7 @@ def my_downloads(request):
         if dl_file.username == this_user:
             this_file = dl_file.file_downloaded
             file_list.append(this_file)
-
+    this_user.downloads += 1
     return render(request, 'project/mydownloads.html', {'file_list': file_list})
 
 def logout_view(request):
@@ -142,5 +142,3 @@ def logout_view(request):
 
 def aboutus(request):
     return render(request, 'project/aboutUS.html')
-
-
