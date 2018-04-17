@@ -1,48 +1,22 @@
 <!DOCTYPE html>
 <html>
-<style>
-#grad1 {
-    height: 800px;
-    background-color: #cccccc;
-    background-image: linear-gradient(#93a5cf, #e4efe9);
-}
-
-#grad2{
-    background-color:  #e6e6ff;
-    width: max-content;
-    border-style: double;
-    border-color: #9999ff;
-    border-width: 5px;
-    padding: 15px;
-    margin: 15px;
-}
-
-#grad3{
-    font-family: 'Graduate';
-}
-
-#grad4{
-    padding-left: 200px;
-}	
-
-</style>
-<head>
+  <head>
     {% load static %}
-	<title></title>
-	 <meta charset="utf-8">
-	  <meta name="viewport" content="width=device-width, initial-scale=1">
-	 <link href='https://fonts.googleapis.com/css?family=Graduate' rel='stylesheet'>	
-	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	  <link rel="stylesheet" href="{% static 'project/static/project/css/dashboard.css' %}">
-	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</head>
-<body id = "grad1">
+    <title>Dashboard</title>
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Graduate' rel='stylesheet'>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'project/static/project/css/dashboard.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+  <body>
     {% block content %}
-
-	<!--Navigation Bar  begins-->
-		<nav class="navbar navbar-inverse">
-		  <div class="container-fluid">
+    <div style="margin: 0 auto; padding: 0 20px 0 20px;background-color: #cccccc; background-image: linear-gradient(#93a5cf, #e4efe9);">
+    <!--Navigation Bar  begins-->
+      <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
 		    <div class="navbar-header">
 		      <a class="navbar-brand" href="#">UB_Liberator</a>
 		    </div>
@@ -56,21 +30,28 @@
 		      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li> -->
 		      <li><a href="{% url 'logout_view' %}"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
 		    </ul>
-		  </div>
-		</nav>
+        </div>
+      </nav>
 	<!-- Nav bar ends -->
-
-	<!-- Profile pic bakchodi begins -->
-
-	<div class="container-fluid">     
-	  <div class="row">
-		    <div class="col-sm-2">
-			<div id="grad2">		 
-		      <center><img src="{% static 'project/img/cartoon.jpg' %}" class="img-circle" alt="Profile Picture" style="padding-left: auto; padding-top: 20px; padding-right: auto"></center><br>
-		     <div id = "grad3"> <center><h3 style="padding-left: auto;">{{ user.username }}</h3></center></div>
-		      <!-- <a id="sidebar-edit-profile-btn" href="#/profile" class="ajax_navigation" data-ch-track-tab-change="" data-name="User Profile" style="padding-left: 70px;">Edit Profile</a><br><br> -->
-
-		      <ul class="nav nav-pills nav-stacked">
+    
+    <!-- slogon  begins -->
+    <div style="background-color:#1C6EA4; border: 3px solid #1C6EA4; border-radius: 200px 0px 0px 0px; color: #cccccc; text-align: right; padding-right: 30px; text-shadow: 2px 2px 2px #000000;">
+      <h1> Go Ahead and Master Your Courses <br> Search and find all you need <br></h1>
+    </div>
+    <!-- slogon ends -->
+    
+    <!-- Conteints Begins -->
+    <div style="min-height: 700px; border: 10px solid #1C6EA4; background: #D0E4F5 url('books.png') no-repeat scroll 95% 90%; background-size: 400px 300px;">
+      <!-- Left Column -->
+      <div class="col-sm-4">
+        <div style="background-color: #e6e6ff; border-style: double; border-color: #9999ff; border-width: 5px; padding: 15px; margin: 15px; box-shadow: 5px 5px 15px 5px #000000;">
+          <center>
+           <img src="{% static 'project/img/cartoon.jpg' %}" class="img-circle" alt="Profile Picture" style="padding-left: auto; padding-top: 20px; padding-right: auto">
+           <br>
+           <h3 style="padding-left: auto;">{{ user.username }}</h3>
+          </center>
+          <hr/>
+          <ul class="nav nav-pills nav-stacked">
 				  <li class="active"><a href="{% url 'course_list' %}#">Home</a></li>
 				  <li><a href="{% url 'my_downloads' %}">My Downloads</a></li>
 				  <li><a href="{% url 'my_uploads' %}">My Uploads</a></li>
@@ -82,12 +63,12 @@
                         <input type="submit" value="Search">
                       </form>
                   </li>
-			  </ul>
-			</div>
-		    </div>
-		    <div class="col-sm-10">
-		     <center><h1> Go Ahead and Master Your Courses | Search and find all you need</h1> </center> 
-		     <!-- <div class="btn-group btn-group-justified">
+	      </ul>
+        </div>
+      </div>
+      <!-- Right Column -->
+      <div class="col-sm-8">
+        <!-- <div class="btn-group btn-group-justified">
 					 <div class="btn-group">
 					    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
 					    Select Your Subject <span class="caret"></span></button>
@@ -111,10 +92,8 @@
 					<div class="btn-group">
 						<a href="#" class="btn btn-primary">SEARCH</a>
 					</div>
-				    
 			  </div> -->
-		<div id = "grad4">								   
-              <div id="course_box" style="display: inline">
+        <div id="course_box" style="display: inline; margin: 15px">
                   {% for course in courses %}
                       <div id="course_div" style="height:100px; width: 300px; margin: 10px">
                           <form method="post" action="{% url 'course_view' identity=course.course_name %}">
@@ -126,23 +105,17 @@
                               </button>
                           </form>
                       </div>
-		</div>											      
                   {% endfor %}
-              </div>
+		</div>	
+      </div>
 {#            <div>#}
 {#                <p>{{ request.user }}</p>#}
 {#            </div>#}
-
-
-
-		   	</div>
-	    </div>
-	</div>
-
-{% endblock %}
-
-
-</body>
+    </div>
+    <!-- Conteints Ends -->
+    </div>
+    {% endblock %}
+  </body>
 </html>
 
 {% block scripts %}
