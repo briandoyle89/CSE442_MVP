@@ -26,7 +26,8 @@ SECRET_KEY = '@it2(r^2#zc!f#g5u=7z!0&ulqwyufhy5ntpl#!d3ruiy5-0x2'
 DEBUG = True
 
 # SECURE_SSL_REDIRECT = True
-
+CONTENT_TYPES = ['image', 'video']
+MAX_UPLOAD_SIZE = "5242880"
 ALLOWED_HOSTS = []
 
 

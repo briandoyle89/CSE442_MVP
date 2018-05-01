@@ -10,6 +10,7 @@ from django.http import HttpResponse
 from django.core.files.storage import FileSystemStorage
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import ValidationError
 import re
 
 from django.http import HttpResponse, Http404, HttpResponseRedirect
@@ -85,7 +86,7 @@ def course_view(request, identity):
                                                            'user_votes': user_votes,
                                                            'user': user
                                                            })
-#Rest are self-explanotary
+#Rest are self-explanotary4
 @login_required
 def file_upload(request):
     this_user = request.user
@@ -98,7 +99,7 @@ def file_upload(request):
             fileuploading.username = request.user
             file_name = fileuploading.file_name
             print("here1")
-            if re.match('^[A-Za-z0-9]+[A-Za-z0-9_]+[A-Za-z0-9_]+$', file_name):
+            if re.match('^[A-Za-z0-9]+[A-Za-z0-9_\s]+[A-Za-z0-9_]+$', file_name):
                 print("here")
                 fileuploading.save()
                 courses = course.objects.all()
@@ -106,6 +107,8 @@ def file_upload(request):
             else:
                 return render(request, 'project/file_upload.html', {'form': form,
                                                                     'message': "Please enter a valid file name."})
+        else:
+            return render(request, 'project/file_upload.html', {'form': form})
     else:
         form = FileForm()
         return render(request, 'project/file_upload.html', {'form': form})
@@ -178,6 +181,10 @@ def file_search(request):
         search_term = request.POST.get("search")
         user_votes = UserVotes.objects.all()
         similar_files = file.objects.filter(file_name__contains=search_term)
+        if len(similar_files) == 0:
+            return render(request, 'project/file_search.html', {'similar_files': similar_files,
+                                                                'user_votes': user_votes,
+                                                                'no_files': "There are no matching files."})
 
         return render(request, 'project/file_search.html', {'similar_files': similar_files,
                                                         'user_votes': user_votes})
