@@ -61,7 +61,13 @@ Conflict Resolution:
 
 In the event of a conflict, the conflicting teammates will have another teammate flip a coin.  If there is not another teammate present, we will contact someone to flip it via skype, snapchat or something similar.
 
-S
+==============================================================================================================
+
+Official Release Video link: https://youtu.be/VMJcd7EJ_6g
+
+The link to our website is: https://ubliberator3.pythonanywhere.com/
+
+==============================================================================================================
 
 The Beta Release video link:https://youtu.be/KJawUlfCWrw
 
