@@ -101,6 +101,8 @@ def file_upload(request):
             print("here1")
             if re.match('^[A-Za-z0-9]+[A-Za-z0-9_\s]+[A-Za-z0-9_]+$', file_name):
                 print("here")
+            file_name =  fileuploading.file_name
+            if re.match('^[A-Za-z0-9]+[A-Za-z0-9_]+[A-Za-z0-9_]+$', file_name):
                 fileuploading.save()
                 courses = course.objects.all()
                 return render(request, 'project/dashboard.html', {'courses': courses})

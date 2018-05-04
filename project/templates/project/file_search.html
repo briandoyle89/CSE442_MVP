@@ -1,16 +1,43 @@
 <!DOCTYPE html>
 <html>
+<style>
+#grad1 {
+    height: 800px;
+    background-color: #cccccc;
+    background-image: linear-gradient(#93a5cf, #e4efe9);
+}
+
+#grad2{
+    background-color:  #e6e6ff;
+    width: max-content;
+    border-style: double;
+    border-color: #9999ff;
+    border-width: 5px;
+    padding: 15px;
+    margin: 15px;
+}
+
+#grad3{
+    font-family: 'Graduate';
+}
+
+#grad4{
+    padding-left: 200px;
+}	
+
+</style>
 <head>
     {% load static %}
 	<title></title>
 	 <meta charset="utf-8">
 	  <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href='https://fonts.googleapis.com/css?family=Graduate' rel='stylesheet'>
 	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
     {% block content %}
-        <body>
+        <body id = "grad1">
 
             <!--Navigation Bar  begins-->
                 <nav class="navbar navbar-inverse">
@@ -37,8 +64,9 @@
             <div class="container-fluid">
               <div class="row">
                     <div class="col-sm-2">
-                      <img src="{% static 'project/img/cartoon.jpg' %}" class="img-circle" alt="Profile Picture" style="padding-left: 20px; padding-top: 20px;"><br>
-                      <h3 style="padding-left: 30px;">{{ user.username }}</h3>
+			<div id="grad2">    
+                      <center><img src="{% static 'project/img/cartoon.jpg' %}" class="img-circle" alt="Profile Picture" style="padding-left: auto; padding-top: 20px; padding-right: auto"></center><br>
+		     <div id = "grad3"> <center><h3 style="padding-left: auto;">{{ user.username }}</h3></center></div>
                       <!--<a id="sidebar-edit-profile-btn" href="#/profile" class="ajax_navigation" data-ch-track-tab-change="" data-name="User Profile" style="padding-left: 70px;">Edit Profile</a><br><br> -->
 
                       <ul class="nav nav-pills nav-stacked">
@@ -49,12 +77,12 @@
                           <li>
                               <form id="search-form" method="post" action="{% url 'file_search' %}">
                                   {% csrf_token %}
-                                <input name="search" id="search">
-                                <input type="submit">
+                                <input name="search" id="search" placeholder="Search For Anything">
+                                 <input type="submit" value="Search">
                               </form>
                           </li>
                       </ul>
-
+			    </div>
                     </div>
                     <div class="col-sm-10">
                      <center><h1> Welcome to {{ course_name }}</h1> </center>
@@ -84,6 +112,7 @@
                             </div>
 
                       </div> -->
+			 <div id = "grad4">   
                         <div id="course_box" style="display: inline">
                           {% for similar_file in similar_files %}
                               <div id="course_div" style="height:200px; width: 300px; margin: 10px">
@@ -91,20 +120,33 @@
                                       {% csrf_token %}
                                     <p>{{ similar_file.file_name }}</p>
                                     <p>Score: {{ similar_file.votes }}</p>
+                                  <input id="status">
+                                  <label for="status">
+                                      {% for vote in user_votes %}
+                                      {% if vote.user == user and vote.file == similar_file and vote.vote_type == 'up' %}
+                                      You Upvoted This.
+                                      {% elif vote.user == user and vote.file == similar_file and vote.vote_type == 'down' %}
+                                      You Downvoted This.
+                                      {% else %}
+                                      {% endif %}
+                                      {% endfor %}
+                                  </label>
                                     <p>{{ similar_file.course }}</p>
                                       <button>
                                           Download this File
                                       </button>
                                   </form>
-                              <form action="{% url 'upvote' file_chosen=similar_file.id %}">
-                                <button>
+                              <form method="post" action="{% url 'upvote' file_chosen=similar_file.id %}">
+                              {% csrf_token %}
                                     <input class="hidden" name="course_is" id="course_is" value="{{ course_name }}">
+                                <button>
                                       Upvote
                                 </button>
                               </form>
-                              <form action="{% url 'downvote' file_chosen=similar_file.id %}">
-                                <button>
+                              <form method="post" action="{% url 'downvote' file_chosen=similar_file.id %}">
+                              {% csrf_token %}
                                     <input class="hidden" name="course_is" id="course_is" value="{{ course_name }}">
+                                <button>
                                       Downvote
                                 </button>
                               </form>
@@ -115,8 +157,11 @@
                               <p><a href="{% url 'course_list' %}">Return to Courses</a></p>
                       </div>
                     </div>
+		    </div>
                 </div>
 
         </body>
     {% endblock %}
 </html>
+
+
