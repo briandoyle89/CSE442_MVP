@@ -5,7 +5,7 @@ from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, Permis
 from django.db import models
 from django.db.models import CASCADE
 from django.db.models import Model, TextField
-from django.core.validators import RegexValidator
+from django.core.validators import RegexValidator, ValidationError
 from django.db.models.fields.files import ImageFieldFile, FileField
 # Create your models here.
 
@@ -28,12 +28,21 @@ class user(User, PermissionsMixin):
 class course(models.Model):
     course_name = models.CharField(default='CSE100', max_length=40, unique=True, primary_key=True)
 
+
+def validate_file_size(value):
+    filesize = value.size
+
+    if filesize > 4 * 1024 * 1024:
+        raise ValidationError("The maximum file size that can be uploaded is 4MB")
+    else:
+        return value
+
 #Model to upload files, & each uploaded file is associated with a user, hence keep a count too.
 class file(models.Model):
-    file_name = models.CharField(blank=False, max_length=60)
+    file_name = models.CharField(blank=False,  max_length=60)
     username = models.ForeignKey(User, on_delete=CASCADE, null=True, blank=True)
     course = models.ForeignKey(course, on_delete=CASCADE)
-    file_link = models.FileField(upload_to='documents/')
+    file_link = models.FileField(upload_to='documents/', validators=[validate_file_size])
     votes = models.IntegerField(default=0)
 
     def upvote(self, user):
